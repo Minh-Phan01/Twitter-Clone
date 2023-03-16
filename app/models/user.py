@@ -1,7 +1,15 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from sqlalchemy.sql import func
 
+followers = db.Table(
+    'followers',
+    db.Column('user_id', db.ForeignKey(add_prefix_for_prod('users.id'), ondelete='CASCADE'), primary_key=True)
+    db.Column('follower_id', db.ForeignKey(add_prefix_for_prod('users.id'), ondelete='CASCADE'), primary_key=True)
+)
+if environment == "production":
+    followers.schema = SCHEMA
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -13,6 +21,18 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    first_name = db.Column(db.String(255), nullable=False)
+    last_name = db.Column(db.String(255), nullable=False)
+    profile_picture_url = db.Column(db.String(255))
+    created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
+
+    posts = db.relationship('Post', back_populates='users')
+    shares = db.relationship('Share', back_populates='users')
+    likes = db.relationship('Like', back_populates='users')
+    followed = db.relationship('User', primaryjoin=(followers.c.user_id == id), secondaryjoin=(followers.c.follower_id == id), db.backref('followers', lazy='dynamic'), lazy='dynamic')
+    sent_messages = db.relationship('Message', back_populates='sender')
+    received_messages = db.relationship('Message', back_populates='recipient')
 
     @property
     def password(self):
@@ -29,5 +49,10 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'firstName': self.first_name,
+            'lastName': self.last_name,
+            'profilePictureUrl': self.profile_picture_url,
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at
         }
