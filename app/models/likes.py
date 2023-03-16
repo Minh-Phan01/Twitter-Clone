@@ -12,14 +12,15 @@ class Like(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
 
-    users = db.relationship('User', back_populates='likes')
-    posts = db.relationship('Post', back_populates='likes')
+    user = db.relationship('User', back_populates='likes')
+    post = db.relationship('Post', back_populates='likes')
 
     def to_dict(self):
         return {
             'id': self.id,
             'userId': self.user_id,
-            'postId': self.post_id
+            'postId': self.post_id,
             'createdAt': self.created_at,
-            'updatedAt': self.updated_at
+            'updatedAt': self.updated_at,
+            'userInfo': self.users.to_dict()
         }

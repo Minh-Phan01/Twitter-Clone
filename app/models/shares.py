@@ -12,8 +12,8 @@ class Share(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
 
-    users = db.relationship('User', back_populates='shares')
-    posts = db.relationship('Post', back_populates='shares')
+    user = db.relationship('User', back_populates='shares')
+    post = db.relationship('Post', back_populates='shares')
 
     def to_dict(self):
         return {
@@ -21,5 +21,6 @@ class Share(db.Model):
             'userId' = self.user_id,
             'postId' = self.post_id,
             'createdAt' = self.created_at,
-            'updatedAt' = self.updated_at
+            'updatedAt' = self.updated_at,
+            'userInfo' = self.users.to_dict()
         }

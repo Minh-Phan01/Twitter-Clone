@@ -13,9 +13,9 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
 
-    users = db.relationship('User', back_populates='posts')
-    shares = db.relationship('Share', back_populates='posts')
-    likes = db.relationship('Like', back_populates='posts' )
+    user = db.relationship('User', back_populates='posts')
+    shares = db.relationship('Share', back_populates='post')
+    likes = db.relationship('Like', back_populates='post')
 
     def to_dict(self):
         return {
@@ -23,5 +23,6 @@ class Post(db.Model):
             'userId': self.user_id,
             'body': self.body,
             'createdAt': self.created_at,
-            'updatedAt': self.updated_at
+            'updatedAt': self.updated_at,
+            'userInfo': self.users.to_dict()
         }

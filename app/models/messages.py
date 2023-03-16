@@ -16,3 +16,11 @@ class Message(db.Model):
     sender = db.relationship('User', foreign_keys=[sender_id], back_populates='sent_messages')
     recipient = db.relationship('User', foreign_keys=[recipient_id], back_populates='received_messages')
     
+    def to_dict(self):
+        return {
+            'senderInfo': self.sender.to_dict(),
+            'recipientInfo': self.recipient.to_dict(),
+            'body': self.body,
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at
+        }

@@ -23,13 +23,13 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     first_name = db.Column(db.String(255), nullable=False)
     last_name = db.Column(db.String(255), nullable=False)
-    profile_picture_url = db.Column(db.String(255))
+    profile_picture_url = db.Column(db.String())
     created_at = db.Column(db.DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
 
-    posts = db.relationship('Post', back_populates='users')
-    shares = db.relationship('Share', back_populates='users')
-    likes = db.relationship('Like', back_populates='users')
+    posts = db.relationship('Post', back_populates='user')
+    shares = db.relationship('Share', back_populates='user')
+    likes = db.relationship('Like', back_populates='user')
     followed = db.relationship('User', primaryjoin=(followers.c.user_id == id), secondaryjoin=(followers.c.follower_id == id), db.backref('followers', lazy='dynamic'), lazy='dynamic')
     sent_messages = db.relationship('Message', back_populates='sender')
     received_messages = db.relationship('Message', back_populates='recipient')
@@ -54,5 +54,6 @@ class User(db.Model, UserMixin):
             'lastName': self.last_name,
             'profilePictureUrl': self.profile_picture_url,
             'createdAt': self.created_at,
-            'updatedAt': self.updated_at
+            'updatedAt': self.updated_at,
+            'posts': self.posts.to_dict()
         }
