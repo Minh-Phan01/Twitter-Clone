@@ -24,13 +24,5 @@ def posts():
     return jsonify({'posts': [post.to_dict() for post in posts]})
 
 
-@post_routes.route('/<int:userId>/posts/<int:postId>')
-def personPosts(userId, postId):
-    """
-    Query for all posts of a user and returns them in a dictionary
-    """
-    user = User.query.get(id)
-    userPost = Post.query.filter(
-        Post.user_id == userId, Post.id == postId).first()
-    return userPost.to_dict()
+
 
