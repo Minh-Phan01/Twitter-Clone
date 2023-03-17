@@ -3,13 +3,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy.sql import func
 
-followers = db.Table(
-    'followers',
-    db.Column('user_id', db.ForeignKey(add_prefix_for_prod('users.id'), ondelete='CASCADE'), primary_key=True)
-    db.Column('follower_id', db.ForeignKey(add_prefix_for_prod('users.id'), ondelete='CASCADE'), primary_key=True)
-)
-if environment == "production":
-    followers.schema = SCHEMA
+# followers = db.Table(
+#     'followers',
+#     db.Column('user_id', db.ForeignKey(add_prefix_for_prod('users.id'), ondelete='CASCADE'), primary_key=True)
+#     db.Column('follower_id', db.ForeignKey(add_prefix_for_prod('users.id'), ondelete='CASCADE'), primary_key=True)
+# )
+# if environment == "production":
+#     followers.schema = SCHEMA
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -30,9 +30,9 @@ class User(db.Model, UserMixin):
     posts = db.relationship('Post', back_populates='user')
     shares = db.relationship('Share', back_populates='user')
     likes = db.relationship('Like', back_populates='user')
-    followed = db.relationship('User', primaryjoin=(followers.c.user_id == id), secondaryjoin=(followers.c.follower_id == id), db.backref('followers', lazy='dynamic'), lazy='dynamic')
-    sent_messages = db.relationship('Message', back_populates='sender')
-    received_messages = db.relationship('Message', back_populates='recipient')
+    # followed = db.relationship('User', primaryjoin=(followers.c.user_id == id), secondaryjoin=(followers.c.follower_id == id), db.backref('followers', lazy='dynamic'), lazy='dynamic')
+    sent_messages = db.relationship('Message', back_populates='sender', foreign_keys='Message.sender_id')
+    received_messages = db.relationship('Message', back_populates='recipient', foreign_keys='Message.recipient_id')
 
     @property
     def password(self):
@@ -45,6 +45,12 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    def posts_to_dict(self):
+        postsObj = {}
+        for post in self.posts:
+            postsObj[post.id] = post.body
+        return postsObj
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -55,5 +61,5 @@ class User(db.Model, UserMixin):
             'profilePictureUrl': self.profile_picture_url,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
-            'posts': self.posts.to_dict()
+            'posts': self.posts_to_dict()
         }

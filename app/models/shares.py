@@ -17,10 +17,10 @@ class Share(db.Model):
 
     def to_dict(self):
         return {
-            'id' = self.id,
-            'userId' = self.user_id,
-            'postId' = self.post_id,
-            'createdAt' = self.created_at,
-            'updatedAt' = self.updated_at,
-            'userInfo' = self.users.to_dict()
+            'id': self.id,
+            'userId': self.user_id,
+            'postId': self.post_id,
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at,
+            'userInfo': self.users.to_dict()
         }

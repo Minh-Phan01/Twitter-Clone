@@ -1,4 +1,4 @@
-from app.models import db, Share, Category, environment, SCHEMA
+from app.models import db, Share, environment, SCHEMA
 from datetime import datetime 
 
 def seed_shares():
@@ -9,7 +9,7 @@ def seed_shares():
         created_at=datetime.utcnow()
     )
 
-     michael_shares_dwightPost2 = Share(
+    michael_shares_dwightPost2 = Share(
         id=2,
         user_id=1,
         post_id=4,
@@ -30,7 +30,7 @@ def seed_shares():
         created_at=datetime.utcnow()
     )
 
-    db.session.add(michael_likes_dwightPost1)
+    db.session.add(michael_shares_dwightPost1)
     db.session.add(michael_shares_dwightPost2)
     db.session.add(dwight_shares_michaelPost2)
     db.session.add(kevin_shares_michaelPost2)
@@ -42,3 +42,5 @@ def undo_shares():
             f"TRUNCATE table {SCHEMA}.shares RESTART IDENTITY CASCADE;")
     else:
          db.session.execute("DELETE FROM shares")
+
+    db.session.commit()
