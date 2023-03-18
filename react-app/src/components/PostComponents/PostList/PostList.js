@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from "react";
-import { getAllPosts} from "../../store/posts"
+import { getAllPosts} from "../../../store/posts"
 import PostCard from '../PostCard/PostCard'
 import { NavLink, useParams } from "react-router-dom";
 
@@ -11,9 +11,8 @@ export const PostList = () => {
     const [isLoaded, setisLoaded] = useState(false);
 
     const postsObj = useSelector(state => state.postsReducer);
-    console.log(postsObj)
     const allPosts = Object.values(postsObj)
-    console.log(allPosts)
+    
 
     useEffect(() => {
         dispatch(getAllPosts()).then(() => setisLoaded(true))
@@ -22,6 +21,7 @@ export const PostList = () => {
 
     return (
         <>
+        <h1>---------------Nosy Nancy-----------------</h1>
         <div>
             {postsObj &&
                 allPosts.map(post => {

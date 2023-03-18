@@ -1,7 +1,9 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from sqlalchemy.exc import SQLAlchemyError
 from flask_login import login_required, current_user
-from app.models import Post
+from app.models import Post, db
+from ..forms.posts import PostForm
+
 
 post_routes = Blueprint('posts', __name__)
 
@@ -23,6 +25,29 @@ def posts():
     posts = Post.query.all()
     return jsonify({'posts': [post.to_dict() for post in posts]})
 
+
+@post_routes.route('/', methods=['POST'])
+@login_required
+def post_create():
+    """
+    Create a post for a user
+    """
+
+    print('LOOOOOOKK ATTTT MEEEEEEE', request.get_json())
+    form = PostForm()
+    data = form.data
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_post = Post(
+            user_id=current_user.get_id(),
+            body=data['body']
+             )
+        
+        db.session.add(new_post)
+        db.session.commit()
+        
+        return new_post.to_dict()
+    # return 'Hellooooooo'
 
 
 

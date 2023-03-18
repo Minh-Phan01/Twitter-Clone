@@ -24,5 +24,5 @@ class Post(db.Model):
             'body': self.body,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
-            # 'userInfo': self.user.to_dict()
+            'userInfo': self.user.to_dict()
         }
