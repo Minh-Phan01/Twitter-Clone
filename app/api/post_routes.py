@@ -47,7 +47,37 @@ def post_create():
         db.session.commit()
         
         return new_post.to_dict()
-    # return 'Hellooooooo'
+    
 
+@post_routes.route('/edit/<int:postId>', methods=['PUT'])
+@login_required
+def edit_post(postId):
+    """
+    Edit post by postId
+    """
+    form = PostForm()
+    data = form.data
+    print('DATA....', data.items)
+    post = Post.query.filter(Post.id == postId).first()
+    if (post.user_id == int(current_user.get_id())):
+        for key, value in data.items():
+            if hasattr(post, key) and value is not None:
+                setattr(post, key, value)
+    db.session.commit()
+    return post.to_dict()
+
+
+@post_routes.route('/<int:postId>/delete', methods=['DELETE'])
+@login_required
+def delete_post(postId):
+    """
+    Delete a post by postId
+    """
+
+    post = Post.query.filter(Post.id == postId).first()
+    if (post.user_id == int(current_user.get_id())):
+        db.session.delete(post)
+        db.session.commit()
+        return 'Successfully deleted post!'
 
 

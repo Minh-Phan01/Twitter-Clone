@@ -17,7 +17,7 @@ const CreatePostForm = () => {
         let newPost = {
             body,
         }
-        console.log('newPost:', newPost)
+        
         await dispatch(createPost(newPost))
     }
 

@@ -1,5 +1,7 @@
 const GET_POSTS = 'posts/getPosts';
 const CREATE_POST = 'posts/createPost';
+const EDIT_POST = 'posts/editPost';
+const DELETE_POST = 'posts/deletePost'
 
 
 //GET POSTS ACTION
@@ -18,6 +20,22 @@ const addPost = (payload) => {
     }
 }
 
+//EDIT POST ACTION
+const editPost = (payload) => {
+    return {
+        type: EDIT_POST,
+        payload
+    }
+}
+
+
+const deletePost = (postId) => {
+    return {
+        type: DELETE_POST,
+        postId
+    }
+}
+
 
 //GET ALL POSTS THUNK
 export const getAllPosts = () => async (dispatch) => {
@@ -29,6 +47,8 @@ export const getAllPosts = () => async (dispatch) => {
         return data;
     }
 }
+
+
 
 // CREATE POST THUNK
 export const createPost = (newPost) => async (dispatch) => {
@@ -50,6 +70,38 @@ export const createPost = (newPost) => async (dispatch) => {
     return response;
 }
 
+//EDIT A POST THUNK
+export const editPostThunk = (postEdit) => async (dispatch) => {
+    const { id, body } = postEdit
+    console.log(id);
+    const response = await fetch(`/api/posts/edit/${id}`, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify({
+            body
+        })
+    })
+
+    if (response.ok) {
+        const editedPost = await response.json();
+        dispatch(editPost(editedPost))
+    }
+    return response;
+}
+
+
+export const deletedPost = (postId) => async (dispatch) => {
+    const response = await fetch(`/api/posts/${postId}/delete`, {
+        method: 'DELETE'
+    });
+
+    if (response.ok) {
+        dispatch(deletePost(postId))
+    }
+}
+
 
 const initialState = {}
 
@@ -65,6 +117,12 @@ export const postsReducer = (state = initialState, action) => {
         case CREATE_POST:
             newState[action.payload.id] = action.payload;
             return newState
+        case EDIT_POST:
+            newState[action.payload.id] = action.payload;
+            return newState;
+        case DELETE_POST:
+            delete newState[action.postId];
+            return newState;
         default:
             return state;
     }
