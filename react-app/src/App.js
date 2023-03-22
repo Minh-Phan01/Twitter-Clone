@@ -6,6 +6,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import { HomePage } from "./components/HomePage/HomePage";
+import ProfilePage from './components/ProfilePageComponents/ProfilePage/ProfilePage'
 import EditPostForm from "./components/PostComponents/EditPostForm/EditPostForm";
 
 function App() {
@@ -29,10 +30,13 @@ function App() {
           <Route exact path='/posts/:postId/edit'>
             <EditPostForm />
           </Route>
+          <Route path='/users/:userId'>
+            <ProfilePage />
+          </Route>
           <Route path='/'>
             <HomePage />
           </Route>
-          
+            <ProfilePage />
         </Switch>
       )}
     </>

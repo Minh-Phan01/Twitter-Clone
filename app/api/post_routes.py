@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from sqlalchemy.exc import SQLAlchemyError
+# from sqlalchemy import desc
 from flask_login import login_required, current_user
 from app.models import Post, db
 from ..forms.posts import PostForm
@@ -22,7 +23,7 @@ def posts():
     """
     Query for all posts and returns them in a list of post dictionaries
     """
-    posts = Post.query.all()
+    posts = Post.query.order_by(Post.created_at.desc()).all()
     return jsonify({'posts': [post.to_dict() for post in posts]})
 
 

@@ -19,6 +19,8 @@ export const PostCard = ({post}) => {
 
     const sessionUser = useSelector(state => state.session.user);
 
+
+    //if user is not logged in, it breaks the code ----> profilePictureUrl --> look at EditPostForm & CreatePostForm (Home Page)
     return (
         <>
         <h3>PostCard</h3>
@@ -29,10 +31,9 @@ export const PostCard = ({post}) => {
             </div>
             <h4>{post.body}</h4>
             <div>
-                <div>
-                    {(sessionUser && post.userId === sessionUser.id) && <button onClick={editedPostInfo}>Edit Post</button>}
-                    {(sessionUser && post.userId === sessionUser.id) && <button onClick={deleteButton}>Delete Post</button>}
-                </div>
+                {(sessionUser && post.userId === sessionUser.id) && <button onClick={editedPostInfo}>Edit Post</button>}
+                {(sessionUser && post.userId === sessionUser.id) && <button onClick={deleteButton}>Delete Post</button>}
+                <p>-------------------------------------------------</p>
             </div>
         </div>
         </>

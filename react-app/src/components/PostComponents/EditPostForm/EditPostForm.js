@@ -21,8 +21,6 @@ const EditPostForm = () => {
             id: postId,
             body,
         }
-
-        console.log(payload)
         
         dispatch(editPostThunk(payload))
             .then(() => {
@@ -35,7 +33,7 @@ const EditPostForm = () => {
         <>
          <div>
             <h1>Since you're insecure...Here you go</h1>
-            <h2><img src={currentUser.profilePictureUrl}/> {currentUser.firstName} {currentUser.lastName}</h2>
+            {currentUser && <h2><img src={currentUser.profilePictureUrl}/> {currentUser.firstName} {currentUser.lastName}</h2>}
          </div>
          <section>
             <form onSubmit={handleSubmit}>

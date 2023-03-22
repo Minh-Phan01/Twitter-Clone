@@ -19,6 +19,7 @@ const CreatePostForm = () => {
         }
         
         await dispatch(createPost(newPost))
+        .then(() => setBody(''))
     }
 
     
@@ -33,7 +34,7 @@ const CreatePostForm = () => {
                 <div>
                     <textarea
                         type='text'
-                        placeholder='Post A Message'
+                        placeholder='What is on your mind?'
                         value={body}
                         onChange={e => setBody(e.target.value)}
                     />

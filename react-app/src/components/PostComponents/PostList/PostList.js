@@ -12,7 +12,9 @@ export const PostList = () => {
 
     const postsObj = useSelector(state => state.postsReducer);
     const allPosts = Object.values(postsObj)
-    
+    let sortedPosts = allPosts.sort((p1, p2) => {
+        return new Date(p2.createdAt) - new Date(p1.createdAt)
+    })
 
     useEffect(() => {
         dispatch(getAllPosts()).then(() => setisLoaded(true))
@@ -24,7 +26,7 @@ export const PostList = () => {
         <h1>---------------Nosy Nancy-----------------</h1>
         <div>
             {postsObj &&
-                allPosts.map(post => {
+                sortedPosts.map(post => {
                     {
                         return <div>
                             <div>
