@@ -29,9 +29,9 @@ def seed():
         
     seed_users()
     # Add other seed functions here
+    seed_posts()
     seed_likes()
     seed_messages()
-    seed_posts()
     seed_shares()
 
 
