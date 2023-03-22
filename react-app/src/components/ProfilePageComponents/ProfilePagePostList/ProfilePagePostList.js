@@ -1,5 +1,5 @@
 import './ProfilePagePostList.css'
-import { useParams } from 'react-router-dom'
+import { useParams, Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import PostCard from '../../PostComponents/PostCard/PostCard'
@@ -17,15 +17,18 @@ export const ProfilePagePostList = () => {
         return new Date(p2.createdAt) - new Date(p1.createdAt)
     })
     // const userPosts = allPosts.filter(post => post.userId == userId)
-    
 
     useEffect(() => {
         dispatch(getAllPosts())
     }, [dispatch])
 
+    if (isLoaded && (sessionUser.id !== userId)) {
+        return <Redirect to='/' />
+    }
+
     return (
         <>
-            <h1>{sessionUser.firstName}'s' PERSONAL INFO</h1>
+            {sessionUser && <h1>{sessionUser.firstName}'s' PERSONAL INFO</h1>}
             <div>
                 {sortedUserPosts &&
                     sortedUserPosts.map(post => {

@@ -11,7 +11,7 @@ const EditPostForm = () => {
     const currentUser = useSelector(state => state.session.user);
     const editedPost = useSelector(state => state.postsReducer[postId])
     
-    const [body, setBody] = useState(editedPost.body);
+    const [body, setBody] = useState(editedPost?.body);
     
 
     const handleSubmit = async (e) => {
@@ -27,6 +27,10 @@ const EditPostForm = () => {
                 history.push('/')
             }
             )
+    }
+
+    if (!editedPost) {
+        return <Redirect to='/' />
     }
 
     return (
