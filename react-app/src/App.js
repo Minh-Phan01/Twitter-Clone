@@ -8,6 +8,8 @@ import Navigation from "./components/Navigation";
 import { HomePage } from "./components/HomePage/HomePage";
 import ProfilePage from './components/ProfilePageComponents/ProfilePage/ProfilePage'
 import EditPostForm from "./components/PostComponents/EditPostForm/EditPostForm";
+import MessagesPage from "./components/MessagesComponents/MessagesPage/MessagesPage";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +34,9 @@ function App() {
           </Route>
           <Route path='/users/:userId'>
             <ProfilePage />
+          </Route>
+          <Route path='/messages/:userId'>
+            <MessagesPage />
           </Route>
           <Route path='/'>
             <HomePage />

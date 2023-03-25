@@ -18,6 +18,7 @@ class Message(db.Model):
     
     def to_dict(self):
         return {
+            'id': self.id,
             'senderInfo': self.sender.to_dict(),
             'recipientInfo': self.recipient.to_dict(),
             'body': self.body,
