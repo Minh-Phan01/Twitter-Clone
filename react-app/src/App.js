@@ -32,10 +32,10 @@ function App() {
           <Route exact path='/posts/:postId/edit'>
             <EditPostForm />
           </Route>
-          <Route path='/users/:userId'>
+          <Route exact path='/users/:userId'>
             <ProfilePage />
           </Route>
-          <Route path='/messages/:userId'>
+          <Route exact path='/messages/:userId'>
             <MessagesPage />
           </Route>
           <Route path='/'>

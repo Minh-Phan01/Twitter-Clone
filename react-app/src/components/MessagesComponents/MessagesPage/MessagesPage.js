@@ -1,6 +1,8 @@
 import { useParams, useHistory, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllMessages } from '../../../store/messages';
+import { MessageList } from '../MessageList/MessageList';
+import CreateMessageForm from '../CreateMessageForm/CreateMessage';
 import { getAllUsers } from '../../../store/users';
 import './MessagesPage.css'
 import { useEffect, useState } from 'react';
@@ -8,20 +10,31 @@ import { useEffect, useState } from 'react';
 export const MessagesPage = () => {
     const { userId } = useParams();
     const dispatch = useDispatch();
-    const messages = useSelector(state => state.messagesReducer);
-    console.log(messages)
+    const messagesObj = useSelector(state => state.messagesReducer);
+    const messages = Object.values(messagesObj)
+    const sessionUser = useSelector(state => state.session.user);
     const [isLoaded, setisLoaded] = useState(false);
-    const recipient = useSelector(state => state.usersReducer[userId]);
-    
+    const recipient = useSelector(state => state.usersReducer);
+    console.log(messages)
 
 
     useEffect(() => {
-        dispatch(getAllMessages()).then(() => setisLoaded(true));
-    }, [dispatch])
+        dispatch(getAllUsers()).then(() => {
+                dispatch(getAllMessages(userId, sessionUser.id))
+            })
+        .then(() => setisLoaded(true));
+        
+    }, [dispatch, userId])
 
     return (
         <>
             <h1>Message Someone!</h1>
+            {isLoaded &&
+                <>
+                 <MessageList messages={messages}/>
+                <CreateMessageForm /> 
+                </>
+            }
             
         </>
     )

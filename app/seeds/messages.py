@@ -34,10 +34,29 @@ def seed_messages():
         created_at=datetime.utcnow()
     )
 
+
+    michael_to_kevin1 = Message(
+        id=5,
+        sender_id=1,
+        recipient_id=3,
+        body='Kevin....cookie...',
+        created_at=datetime.utcnow()
+    )
+
+    kevin_to_michael1 = Message(
+        id=6,
+        sender_id=3,
+        recipient_id=1,
+        body='Coming Michael!',
+        created_at=datetime.utcnow()
+    )
+
     db.session.add(dwight_to_michael1)
     db.session.add(michael_to_dwight1)
     db.session.add(dwight_to_michael2)
     db.session.add(michael_to_dwight2)
+    db.session.add(michael_to_kevin1)
+    db.session.add(kevin_to_michael1)
     db.session.commit()
 
 

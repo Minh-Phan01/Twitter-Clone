@@ -3,7 +3,7 @@ from wtforms import StringField, TextAreaField
 from wtforms.validators import DataRequired, Email, ValidationError
 from app.models import Message
 
-class Message(FlaskForm):
+class MessageForm(FlaskForm):
     body = TextAreaField('Message', validators=[DataRequired()])
 
 class Meta:
