@@ -1,5 +1,7 @@
 const GET_MESSAGES = 'messages/getMessages';
 const ADD_MESSAGE = 'messages/addMessage';
+const EDIT_MESSAGE = 'messages/editMessage';
+const DELETE_MESSAGE = 'messages/deleteMessage'
 
 
 //GET MESSAGES ACTION
@@ -15,6 +17,22 @@ const addMessages = (payload) => {
     return {
         type: ADD_MESSAGE,
         payload
+    }
+}
+
+//EDIT MESSAGE ACTION
+const editMessage = (payload) => {
+    return {
+        type: EDIT_MESSAGE,
+        payload
+    }
+}
+
+//DELETE MESSAGE ACTION
+const deleteMessage = (messageId) => {
+    return {
+        type: DELETE_MESSAGE,
+        messageId
     }
 }
 
@@ -49,6 +67,37 @@ export const addAMessage = (newMessage) => async (dispatch) => {
     return response;
 }
 
+
+//EDIT MESSAGE THUNK
+export const editMessageThunk = (messageEdit) => async (dispatch) => {
+    const { id } = messageEdit;
+    
+    const response = await fetch(`/api/messages/${id}/edit`, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": 'application/json',
+        },
+        body: JSON.stringify(messageEdit)
+    })
+
+    if (response.ok) {
+        const editedMessage = await response.json();
+        dispatch(editMessage(editedMessage))
+    }
+
+    return response;
+}
+
+export const deletedMessage = (messageId) => async (dispatch) => {
+    const response = await fetch(`/api/messages/${messageId}/delete`, {
+        method: 'DELETE'
+    });
+
+    if (response.ok) {
+        dispatch(deleteMessage(messageId))
+    }
+}
+
 const initialState = {}
 
 export const messagesReducer = (state = initialState, action) => {
@@ -62,6 +111,12 @@ export const messagesReducer = (state = initialState, action) => {
             return newState
         case ADD_MESSAGE:
             newState[action.payload.id] = action.payload;
+            return newState;
+        case EDIT_MESSAGE:
+            newState[action.payload.id] = action.payload;
+            return newState;
+        case DELETE_MESSAGE:
+            delete newState[action.messageId];
             return newState;
         default:
             return state;

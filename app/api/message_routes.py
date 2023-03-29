@@ -59,7 +59,7 @@ def message_create(user1Id, user2Id):
     return new_message.to_dict()
 
 
-@message_routes.route('/messages/<int:messageId>', methods=['PUT'])
+@message_routes.route('/<int:messageId>/edit', methods=['PUT'])
 @login_required
 def edit_message(messageId):
     """
@@ -72,12 +72,22 @@ def edit_message(messageId):
         for key, value in data.items():
             if hasattr(message, key) and value is not None:
                 setattr(message, key, value)
-
     db.session.commit()
     return message.to_dict()
 
+@message_routes.route('/<int:messageId>/delete', methods=['DELETE'])
+@login_required
+def delete_message(messageId):
+    """
+    Delete a message by messageId
+    """
 
-
+    message = Message.query.filter(Message.id == messageId).first()
+    if (message.sender_id == int(current_user.get_id())):
+        db.session.delete(message)
+        db.session.commit()
+        return 'Successfully deleted message!'
+        
 # @message_routes.route('/users/<int:userId>/recipient')
 # def userMessages(userId):
 #     """
