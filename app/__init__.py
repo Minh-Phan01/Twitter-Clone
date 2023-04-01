@@ -10,9 +10,16 @@ from .api.auth_routes import auth_routes
 from .api.post_routes import post_routes
 from .api.message_routes import message_routes
 from .seeds import seed_commands
+from .socket import socketio
 from .config import Config
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
+
+socketio,.init_app(app)
+
+if __name__ == '__main__':
+    socketio.run(app)
+
 
 # Setup login manager
 login = LoginManager(app)

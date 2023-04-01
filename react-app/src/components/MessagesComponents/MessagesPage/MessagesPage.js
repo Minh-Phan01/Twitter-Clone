@@ -14,8 +14,7 @@ export const MessagesPage = () => {
     const messages = Object.values(messagesObj)
     const sessionUser = useSelector(state => state.session.user);
     const [isLoaded, setisLoaded] = useState(false);
-    const recipient = useSelector(state => state.usersReducer);
-    console.log(messages)
+    
 
 
     useEffect(() => {
@@ -25,6 +24,10 @@ export const MessagesPage = () => {
         .then(() => setisLoaded(true));
         
     }, [dispatch, userId])
+
+    if (isLoaded && !sessionUser) {
+        return <Redirect to='/' />
+    }
 
     return (
         <>

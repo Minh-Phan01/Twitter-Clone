@@ -9,6 +9,7 @@ import { HomePage } from "./components/HomePage/HomePage";
 import ProfilePage from './components/ProfilePageComponents/ProfilePage/ProfilePage'
 import EditPostForm from "./components/PostComponents/EditPostForm/EditPostForm";
 import MessagesPage from "./components/MessagesComponents/MessagesPage/MessagesPage";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 
 function App() {
@@ -33,10 +34,14 @@ function App() {
             <EditPostForm />
           </Route>
           <Route exact path='/users/:userId'>
-            <ProfilePage />
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
           </Route>
           <Route exact path='/messages/:userId'>
-            <MessagesPage />
+              <ProtectedRoute>
+                <MessagesPage />
+              </ProtectedRoute>
           </Route>
           <Route path='/'>
             <HomePage />

@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import EditMessageModal from '../EditMessageModal/EditMessageModal';
 import { deletedMessage } from '../../../store/messages';
 import DeleteMessageButton from '../DeleteMessageButton/DeleteMessageButton';
+import { io } from 'socket.io-client'
+import { useEffect } from 'react';
 import './MessageList.css';
 
 
@@ -16,6 +18,10 @@ export const MessageList = ({messages}) => {
         }
     }
 
+   
+
+    
+
     return (
         <>
         <h1>Message List!</h1>
@@ -23,7 +29,11 @@ export const MessageList = ({messages}) => {
             {messages && messages.map(message => {
                 {
                     return <div>
-                        {message.senderInfo.firstName}: {message.body}
+                            <div>
+                                <img src={message.senderInfo.profilePictureUrl} />
+                                 {message.body}
+                            </div>
+                        
                         {isOwner.id === message.senderInfo.id && <div>
                             <OpenModalButton 
                                 buttonText={"Edit Message"}

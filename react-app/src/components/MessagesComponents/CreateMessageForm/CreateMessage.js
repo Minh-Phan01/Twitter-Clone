@@ -1,7 +1,8 @@
 import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { addAMessage } from '../../../store/messages';
+import { io } from 'socket.io-client'
 import './CreateMessageForm.css';
 
 const CreateMessageForm = () => {
@@ -22,6 +23,19 @@ const CreateMessageForm = () => {
         await dispatch(addAMessage(newMessage))
         .then(() => setBody(''));
     }
+
+    // useEffect(() => {
+    //     socket = io();
+
+    //     socket.on("chat", (chat => {
+
+    //     }))
+
+    //     return (() => {
+    //         socket.disconnect()
+    //     })
+    // },[])
+
 
     return (
         <>
