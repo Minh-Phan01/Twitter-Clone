@@ -9,13 +9,14 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.post_routes import post_routes
 from .api.message_routes import message_routes
+from .api.images_routes import image_routes
 from .seeds import seed_commands
-from .socket import socketio
+# from .socket import socketio
 from .config import Config
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
-socketio,.init_app(app)
+# socketio.init_app(app)
 
 if __name__ == '__main__':
     socketio.run(app)
@@ -39,6 +40,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(post_routes, url_prefix='/api/posts')
 app.register_blueprint(message_routes, url_prefix='/api/messages')
+app.register_blueprint(image_routes, url_prefix='/api/images')
 db.init_app(app)
 Migrate(app, db)
 

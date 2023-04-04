@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
+import UploadImage from "../UploadImage/UploadImage";
 import './SignupForm.css';
 
 function SignupFormPage() {
@@ -11,6 +12,9 @@ function SignupFormPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
+  const [profile_picture_url, setImageUrl] = useState(null);
   const [errors, setErrors] = useState([]);
 
   if (sessionUser) return <Redirect to="/" />;
@@ -18,14 +22,19 @@ function SignupFormPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
-        const data = await dispatch(signUp(username, email, password));
+        const data = await dispatch(signUp(username, email, password, first_name, last_name, profile_picture_url));
         if (data) {
-          setErrors(data)
+          setErrors([data])
         }
     } else {
         setErrors(['Confirm Password field must be the same as the Password field']);
     }
   };
+
+  const updateImage = (e) => {
+		const file = e.target.files[0];
+		setImageUrl(file)
+	}
 
   return (
     <>
@@ -70,6 +79,28 @@ function SignupFormPage() {
             required
           />
         </label>
+        <label>
+					First Name
+					<input
+						type="text"
+						value={first_name}
+						onChange={(e) => setFirstName(e.target.value)}
+						required
+					/>
+				</label>
+				<label>
+					Last Name
+					<input
+						type="text"
+						value={last_name}
+						onChange={(e) => setLastName(e.target.value)}
+						required
+					/>
+				</label>
+				<label>
+					Profile Picture
+          <UploadImage setImageUrl={setImageUrl}/>
+				</label>
         <button type="submit">Sign Up</button>
       </form>
     </>
