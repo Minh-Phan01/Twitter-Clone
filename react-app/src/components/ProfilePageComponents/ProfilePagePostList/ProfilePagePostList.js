@@ -28,7 +28,7 @@ export const ProfilePagePostList = () => {
 
     return (
         <>
-            {sessionUser && <h1>{sessionUser.firstName}'s' PERSONAL INFO</h1>}
+            {sessionUser && <h1>{sessionUser.firstName}'s' Posts</h1>}
             <div>
                 {sortedUserPosts &&
                     sortedUserPosts.map(post => {

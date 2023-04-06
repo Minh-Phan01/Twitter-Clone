@@ -5,7 +5,7 @@ import { editMessageThunk } from '../../../store/messages';
 import { useModal } from '../../../context/Modal';
 import './EditMessageModal.css';
 
-const EditMessageModal = ({ message }) => {
+const EditMessageModal = ({ message, socket, editThisMessage }) => {
     const [body, setBody] = useState(message?.body);
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.user);
@@ -19,8 +19,12 @@ const EditMessageModal = ({ message }) => {
             recipientId: message.recipientInfo.id,
             body
         }
-        console.log(payload);
-    await dispatch(editMessageThunk(payload));
+        
+    await dispatch(editMessageThunk(payload))
+    .then((message) => {
+        console.log('handleSubmit:',message)
+        editThisMessage(message)
+    })
     closeModal();
 
     }

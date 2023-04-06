@@ -4,20 +4,22 @@ import EditMessageModal from '../EditMessageModal/EditMessageModal';
 import { deletedMessage } from '../../../store/messages';
 import DeleteMessageButton from '../DeleteMessageButton/DeleteMessageButton';
 import { io } from 'socket.io-client'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './MessageList.css';
 
 
-export const MessageList = ({messages}) => {
+export const MessageList = ({socketMessages, socket}) => {
+    // const [messages, setMessages] = useState([])
     const isOwner = useSelector(state => state.session.user);
     const dispatch = useDispatch();
-    const deleteButton = (e) => {
-        const accept = window.confirm('Deleting Message');
-        if (accept) {
-            dispatch(deletedMessage())
-        }
+
+    const editThisMessage = (message) => {
+        socket.emit("editMessage", message )
     }
 
+    const deleteThisMessage = (messageId) => {
+        socket.emit("deleteMessage", messageId)
+    }
    
 
     
@@ -26,7 +28,7 @@ export const MessageList = ({messages}) => {
         <>
         <h1>Message List!</h1>
         <div>
-            {messages && messages.map(message => {
+            {socketMessages && socketMessages.map(message => {
                 {
                     return <div>
                             <div>
@@ -37,9 +39,9 @@ export const MessageList = ({messages}) => {
                         {isOwner.id === message.senderInfo.id && <div>
                             <OpenModalButton 
                                 buttonText={"Edit Message"}
-                                modalComponent={<EditMessageModal message={message}/>}
+                                modalComponent={<EditMessageModal message={message} socket={socket} editThisMessage={editThisMessage}/>}
                             />
-                            <DeleteMessageButton message={message}/>
+                            <DeleteMessageButton message={message} socket={socket} deleteThisMessage={deleteThisMessage}/>
                             </div>}
                     </div>
                 }

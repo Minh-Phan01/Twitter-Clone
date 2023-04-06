@@ -62,6 +62,7 @@ export const addAMessage = (newMessage) => async (dispatch) => {
         let addedMessage;
         addedMessage = await response.json();
         dispatch(addMessages(addedMessage));
+        return addedMessage
     }
 
     return response;
@@ -83,6 +84,7 @@ export const editMessageThunk = (messageEdit) => async (dispatch) => {
     if (response.ok) {
         const editedMessage = await response.json();
         dispatch(editMessage(editedMessage))
+        return editedMessage;
     }
 
     return response;

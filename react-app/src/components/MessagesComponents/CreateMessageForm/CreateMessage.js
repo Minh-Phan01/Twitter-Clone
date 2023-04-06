@@ -5,11 +5,10 @@ import { addAMessage } from '../../../store/messages';
 import { io } from 'socket.io-client'
 import './CreateMessageForm.css';
 
-const CreateMessageForm = () => {
+const CreateMessageForm = ({sendChat}) => {
     const dispatch = useDispatch();
     const { userId } = useParams();
     const currentUser = useSelector(state => state.session.user);
-
     const [body, setBody] = useState('');
 
     const handleSubmit = async e => {
@@ -18,24 +17,16 @@ const CreateMessageForm = () => {
             senderId: currentUser.id,
             recipientId: parseInt(userId),
             body,
+            senderInfo: currentUser
         }
-        console.log(newMessage);
+        
         await dispatch(addAMessage(newMessage))
+        .then((data) => {
+            data['senderInfo'] = currentUser
+            sendChat(data)
+        })
         .then(() => setBody(''));
     }
-
-    // useEffect(() => {
-    //     socket = io();
-
-    //     socket.on("chat", (chat => {
-
-    //     }))
-
-    //     return (() => {
-    //         socket.disconnect()
-    //     })
-    // },[])
-
 
     return (
         <>
