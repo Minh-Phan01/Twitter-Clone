@@ -53,10 +53,11 @@ def message_create(user1Id, user2Id):
             body=data['body']
         )
 
-    db.session.add(new_message)
-    db.session.commit()
+        db.session.add(new_message)
+        db.session.commit()
 
-    return new_message.to_dict()
+        return new_message.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @message_routes.route('/<int:messageId>/edit', methods=['PUT'])

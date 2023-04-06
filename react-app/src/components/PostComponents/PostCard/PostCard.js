@@ -23,17 +23,16 @@ export const PostCard = ({post}) => {
     //if user is not logged in, it breaks the code ----> profilePictureUrl --> look at EditPostForm & CreatePostForm (Home Page)
     return (
         <>
-        <h3>PostCard</h3>
-        <div>
+        <div className="post-border">
             <div>
-                <img src={post.userInfo.profilePictureUrl} />
-                <p>{post.userInfo.firstName} {post.userInfo.lastName}</p>
+                <img src={post.userInfo.profilePictureUrl} className='profile-pic'/>
+                <p className="post-user-name">{post.userInfo.firstName} {post.userInfo.lastName}</p>
             </div>
-            <h4>{post.body}</h4>
+            <h4 className="post-body">{post.body}</h4>
             <div>
-                {(sessionUser && post.userId === sessionUser.id) && <button onClick={editedPostInfo}>Edit Post</button>}
-                {(sessionUser && post.userId === sessionUser.id) && <button onClick={deleteButton}>Delete Post</button>}
-                <p>-------------------------------------------------</p>
+                {(sessionUser && post.userId === sessionUser.id) && <button onClick={editedPostInfo}><i class="fa-solid fa-pen"></i></button>}
+                {(sessionUser && post.userId === sessionUser.id) && <button onClick={deleteButton}><i class="fa-solid fa-trash"></i></button>}
+                
             </div>
         </div>
         </>

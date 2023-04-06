@@ -9,10 +9,11 @@ const sessionUser = useSelector(state => state.session.user);
 
 
     return (
-        <>
-            { sessionUser && <CreatePostForm /> }
-            <PostList />
-            { sessionUser && <SearchBar /> }
-        </>
+        <div className='home-page'>
+            { sessionUser && <CreatePostForm className='create-post-form'/> }
+            <PostList className='post-list'/>
+            { sessionUser && <SearchBar className='search-bar'/> }
+        </div>
+        
     )
 }

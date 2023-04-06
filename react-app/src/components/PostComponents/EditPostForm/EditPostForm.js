@@ -2,6 +2,7 @@ import { useParams, useHistory, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { editPostThunk } from '../../../store/posts';
+import { useModal } from '../../../context/Modal';
 import './EditPostForm.css'
 
 const EditPostForm = () => {
@@ -27,6 +28,7 @@ const EditPostForm = () => {
                 history.push('/')
             }
             )
+            //closeModal();
     }
 
     if (!editedPost) {

@@ -8,6 +8,7 @@ import './CreatePost.css'
 const CreatePostForm = () => {
     const dispatch = useDispatch();
     const currentUser = useSelector(state => state.session.user);
+    const [errors, setErrors] = useState([])
     
 
     const [body, setBody] = useState('');
@@ -18,8 +19,16 @@ const CreatePostForm = () => {
             body,
         }
         
-        await dispatch(createPost(newPost))
-        .then(() => setBody(''))
+         await dispatch(createPost(newPost))
+        .then(async (data) => {
+            if (data.ok===false) {
+                // const dataErr = await data.json()
+                setErrors(['Please input a valid post'])
+            } else {
+                setBody('')
+                setErrors([])
+            }
+        })
     }
 
     
@@ -31,6 +40,9 @@ const CreatePostForm = () => {
         </div>
         <section>
             <form onSubmit={handleSubmit}>
+                <ul>
+                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
                 <div>
                     <textarea
                         type='text'

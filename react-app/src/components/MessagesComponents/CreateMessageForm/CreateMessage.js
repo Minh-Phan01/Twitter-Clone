@@ -10,6 +10,7 @@ const CreateMessageForm = ({sendChat}) => {
     const { userId } = useParams();
     const currentUser = useSelector(state => state.session.user);
     const [body, setBody] = useState('');
+    const [errors, setErrors] = useState([]);
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -20,18 +21,44 @@ const CreateMessageForm = ({sendChat}) => {
             senderInfo: currentUser
         }
         
-        await dispatch(addAMessage(newMessage))
-        .then((data) => {
-            data['senderInfo'] = currentUser
-            sendChat(data)
-        })
-        .then(() => setBody(''));
+      
+        try {
+            const response = await dispatch(addAMessage(newMessage));
+            if (response.ok === false) {
+                setErrors(['Please input a valid message'])
+            } else {
+                setBody('')
+                setErrors([])
+                sendChat({...response, senderInfo: currentUser});
+            }
+        } catch (error) {
+            setErrors(['Please input a valid message'])
+        }
+      
+      
+        // await dispatch(addAMessage(newMessage))
+        // .then(async (data) => {
+        //     if (data.ok === false) {
+        //         setErrors(['Please input a valid message'])
+        //     } else {
+        //         setBody('')
+        //         setErrors([])
+        //     }
+        // })
+        // .then((data) => {
+        //     data['senderInfo'] = currentUser
+        //     sendChat(data)
+        // })
+        
     }
 
     return (
         <>
             <section>
                 <form onSubmit={handleSubmit}>
+                    <ul>
+                         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    </ul>
                     <div>
                         <textarea
                             type='text'
