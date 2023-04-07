@@ -66,6 +66,7 @@ def sign_up():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         url = None
+        print("++++++", request.files)
 
         if "profile_picture_url" in request.files:
             image = request.files['profile_picture_url']
