@@ -41,7 +41,10 @@ const SignUpForm = () => {
     }
 
     if (formData.password === formData.confirmPassword && formData.password) {
-      await dispatch(signUp(userData));
+      const data = await dispatch(signUp(userData));
+	  if (data) {
+		setErrors(data)
+	  }
     }
   };
 
@@ -59,6 +62,9 @@ const SignUpForm = () => {
       <form className="signup-form" onSubmit={handleSubmit}>
         <header className="signup-form-header">Create an account</header>
         <div className="signup-form-input-container">
+		<ul>
+          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
           <label className="signup-form-input-label">Profile Picture</label>
           <input
             id="file"

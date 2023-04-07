@@ -13,7 +13,9 @@ from .api.images_routes import image_routes
 from .seeds import seed_commands
 from .socket import socketio
 from .config import Config
+from gevent import monkey
 
+monkey.patch_all()
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
 
@@ -44,7 +46,7 @@ app.register_blueprint(image_routes, url_prefix='/api/images')
 db.init_app(app)
 Migrate(app, db)
 
-socketio.init_app(app)
+socketio.init_app(app, async_mode='gevent')
 
 # Application Security
 CORS(app)

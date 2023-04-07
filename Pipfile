@@ -29,6 +29,7 @@ email-validator = "*"
 flask-socketio = "*"
 eventlet = "==0.30.2"
 boto3 = "*"
+gevent = "*"
 
 [dev-packages]
 

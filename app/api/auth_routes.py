@@ -67,8 +67,8 @@ def sign_up():
     if form.validate_on_submit():
         url = None
 
-        if "image" in request.files:
-            image = request.files['image']
+        if "profile_picture_url" in request.files:
+            image = request.files['profile_picture_url']
             if not allowed_file(image.filename):
                 return {"errors": "file type not permitted"}
             image.filename = get_unique_filename(image.filename)
