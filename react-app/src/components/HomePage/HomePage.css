@@ -1,3 +1,14 @@
 .home-page {
     background-color: rgb(37, 35, 35);
+    display: flex;
+    flex-wrap: wrap;
+    height: 800px;
+}
+
+.create-post-form,
+.post-list-home-page,
+.users-container {
+  display: inline-block; /* Set display property to inline-block */
+  vertical-align: middle; /* Vertically center the elements */
+  margin: 10px; /* Add some spacing between the elements */
 }

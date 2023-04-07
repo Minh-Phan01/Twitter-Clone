@@ -36,7 +36,7 @@ const CreatePostForm = () => {
     return (
         <>
         <div>
-            <h2><img src={currentUser.profilePictureUrl}/> {currentUser.firstName} {currentUser.lastName}</h2>
+            <h2 className='create-post-name'><img src={currentUser.profilePictureUrl} className='profile-pic'/> {currentUser.firstName} {currentUser.lastName}</h2>
         </div>
         <section>
             <form onSubmit={handleSubmit}>

@@ -24,7 +24,7 @@ export const PostCard = ({post}) => {
     return (
         <>
         <div className="post-border">
-            <div>
+            <div className="profile-image-name">
                 <img src={post.userInfo.profilePictureUrl} className='profile-pic'/>
                 <p className="post-user-name">{post.userInfo.firstName} {post.userInfo.lastName}</p>
             </div>

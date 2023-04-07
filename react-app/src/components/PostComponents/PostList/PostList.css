@@ -1,0 +1,22 @@
+.post-list{
+    overflow: auto;
+    width: 800px;
+    height: 715px;
+    
+}
+
+.post-list::-webkit-scrollbar {
+    display: none;
+}
+
+.post-component-title {
+    color: white
+}
+
+.post-component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+

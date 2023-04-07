@@ -22,21 +22,23 @@ export const PostList = () => {
 
 
     return (
-        <>
-        <h1>---------------Nosy Nancy-----------------</h1>
-        <div>
-            {postsObj &&
-                sortedPosts.map(post => {
-                    {
-                        return <div>
-                            <div>
-                                <PostCard post={post}/>
+        <div className='post-component'>
+            <h1 className='post-component-title'>---------------Nosy Nancy-----------------</h1>
+            <div className='post-list'>
+                {postsObj &&
+                    sortedPosts.map(post => {
+                        {
+                            return <div>
+                                <div>
+                                    <PostCard post={post}/>
+                                </div>
                             </div>
-                        </div>
-                    }
-                })}
+                        }
+                    })}
+            </div>
+
         </div>
-        </>
+        
     )
 }
 
