@@ -18,15 +18,18 @@ export const AllUsers = () => {
 
     return (
         <>
-        <h1>All Users!</h1>
-        <div>
-            {allUsers && allUsers.map(user => {
-                {
-                    return <div>
-                        <AllUsersCard user={user}/>
-                    </div>
-                }
-            })}
+        <div className='all-users-component'>
+            <h1 className='all-users-title'>All Users</h1>
+            <div className='all-users-list'>
+                {allUsers && allUsers.map(user => {
+                    {
+                        return <div>
+                            <AllUsersCard user={user}/>
+                        </div>
+                    }
+                })}
+            </div>
+
         </div>
         </>
     )

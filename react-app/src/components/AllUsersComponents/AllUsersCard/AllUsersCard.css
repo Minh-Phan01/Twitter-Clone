@@ -1,3 +1,17 @@
 .user-profile-link {
     color: white;
 }
+
+.user-card-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 20%;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.all-users-card {
+    padding: 5px;
+    border: 2px;
+    border-color: white;
+}

@@ -13,10 +13,10 @@ export const AllUsersCard = ({user}) => {
 
     return (
         <>
-        <div>
-            <img src={user.profilePictureUrl} /> 
+        <div className='all-users-card'>
+            <img src={user.profilePictureUrl} className='user-card-pic'/> 
             <NavLink to={`/users/${user.id}`} className='user-profile-link'>{user.firstName} {user.lastName}</NavLink>
-            <button onClick={handleClick}><i class="fa-solid fa-message"></i></button>
+            <button onClick={handleClick} className='user-message-link'><i class="fa-solid fa-message"></i></button>
         </div>
         </>
     )
