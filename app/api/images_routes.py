@@ -31,3 +31,11 @@ def upload_image():
     url = upload["url"]
     # flask_login allows us to get the current user from the request
     return {"url": url}
+
+
+    #   username=form.data['username'],
+    #         email=form.data['email'],
+    #         password=form.data['password'],
+    #         first_name=form.data['first_name'],
+    #         last_name=form.data['last_name'],
+    #         profile_picture_url=form.data['profile_picture_url']

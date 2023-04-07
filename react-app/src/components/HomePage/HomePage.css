@@ -2,7 +2,7 @@
     background-color: rgb(37, 35, 35);
     display: flex;
     flex-wrap: wrap;
-    height: 875px;
+    height: 100vh;
 }
 
 .create-post-form,
