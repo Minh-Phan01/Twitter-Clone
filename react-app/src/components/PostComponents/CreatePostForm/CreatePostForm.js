@@ -35,23 +35,24 @@ const CreatePostForm = () => {
 
     return (
         <>
-        <div>
-            <h2 className='create-post-name'><img src={currentUser.profilePictureUrl} className='profile-pic'/> {currentUser.firstName} {currentUser.lastName}</h2>
+        <div className='create-post-component'>
+          { currentUser && <h2 className='create-post-name'><img src={currentUser.profilePictureUrl} className='profile-pic'/> {currentUser.firstName} {currentUser.lastName}</h2> }
         </div>
         <section>
             <form onSubmit={handleSubmit}>
                 <ul>
                 {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
-                <div>
+                <div className='create-post-area'>
                     <textarea
+                        className='create-post-text-area'
                         type='text'
                         placeholder='What is on your mind?'
                         value={body}
                         onChange={e => setBody(e.target.value)}
                     />
                 </div>
-                <button type='submit'>Post It</button>
+                <button type='submit'> <i className="fas fa-paper-plane"></i></button>
             </form>
         </section>
         </>
