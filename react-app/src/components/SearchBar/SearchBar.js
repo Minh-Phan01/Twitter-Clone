@@ -58,16 +58,19 @@ const SearchBar = () => {
 
     return (
         <>
-            <h1>Message User Search</h1>
-            <form onSubmit={handleSubmit}>
-                <input placeholder='Find User' type='text' value={searchTerm} onChange={handleInputChange}/>
-                <button type='submit'>Search</button>
-                <div>
-                    {recommendations.map((recommendation, index) => (
-                        <div key={index} onClick={() => handleSearch(recommendation)}>{recommendation}</div>
-                    ))}
-                </div>
-            </form>
+            <div className='search-bar-container'>
+                 <h1 className='search-header'>Message User Search</h1>
+                 <form className='search-bar-form'onSubmit={handleSubmit}>
+                     <input className='search-bar' placeholder='Find User' type='text' value={searchTerm} onChange={handleInputChange}/>
+                     <button type='submit' className='search-bar-button'><i class="fa-solid fa-magnifying-glass"></i></button>
+                     <div className='search-list'>
+                         {recommendations.map((recommendation, index) => (
+                             <div className='search-entry' key={index} onClick={() => handleSearch(recommendation)}>{recommendation}</div>
+                         ))}
+                     </div>
+                 </form>
+
+            </div>
         </>
     )
 

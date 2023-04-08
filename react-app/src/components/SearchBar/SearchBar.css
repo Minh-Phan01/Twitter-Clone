@@ -1,0 +1,57 @@
+.search-header {
+    color: white;
+}
+
+.search-bar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* border: 1px solid white; */
+}
+
+.search-bar-form {
+    /* border: 1px solid white; */
+}
+
+.search-bar{
+    margin: 0;
+    width: 250px;
+    height: 25px;
+    padding: 0px 10px;
+    overflow:auto;
+    cursor: text;
+    box-shadow: 0 0 10px rgba(142, 142, 142, 0.5);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 200;
+    /* margin-left: 90px; */
+    margin-top: 20px;
+    margin-right: 2px;
+}
+
+.search-bar-button{
+    /* border: none; */
+    box-sizing: border-box;
+    text-align: center;
+    background-color: rgb(129, 118, 118);
+    color: rgb(255, 255, 255);
+    border-radius: 10%;
+    width: 30px;
+    height: 30px
+}
+
+.search-entry:hover{
+    background-color: rgb(147, 139, 139);
+}
+
+.search-list{
+    position: absolute;
+    background-color: white;
+    margin-left: 100px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left:7px;
+    width: 255px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

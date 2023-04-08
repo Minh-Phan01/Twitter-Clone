@@ -1,0 +1,25 @@
+.profile-page-header {
+    color: rgb(184, 180, 180);
+    display: flex;
+    justify-content: center;
+}
+
+.profile-page-container {
+    margin-right: 5px;
+}
+
+.create-postlist-container,
+.profile-all-users-container {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.profile-page-posts-container {
+    height: 825px;
+    overflow: auto;
+    
+}
+
+.profile-page-posts {
+    overflow: auto;
+}

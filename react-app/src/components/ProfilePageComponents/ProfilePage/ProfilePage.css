@@ -1,0 +1,27 @@
+.profile-page {
+    background-color: rgb(37, 35, 35);
+    height: 100vh;
+    display: flex;
+}
+
+.profile-create-post-container {
+    width: 50%;
+    margin-left: 10px;
+}
+
+.profile-post-list-container {
+    width: 80%;
+    margin-left: 10px;
+    float: left;
+}
+
+.create-postlist-container {
+    float: left;
+    width: 50%;
+}
+
+profile-post-list-container {
+    max-height: 400px;
+}
+
+

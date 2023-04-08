@@ -10,7 +10,7 @@ import './PostList.css'
 export const PostList = () => {
     const dispatch = useDispatch()
     const [isLoaded, setisLoaded] = useState(false);
-
+    const sessionUser = useSelector(state => state.session.user);
     const postsObj = useSelector(state => state.postsReducer);
     const allPosts = Object.values(postsObj)
     let sortedPosts = allPosts.sort((p1, p2) => {
@@ -25,7 +25,7 @@ export const PostList = () => {
     return (
         <div className='post-component'>
             <div className='post-list-create-container'>
-                 <CreatePostForm className='post-list-create-form'/>
+                { sessionUser && <CreatePostForm className='post-list-create-form'/> }
             </div>
             <h1 className='post-component-title'>---------------Nosy Nancy-----------------</h1>
             <div className='post-list'>

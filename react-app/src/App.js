@@ -43,10 +43,9 @@ function App() {
                 <MessagesPage />
               </ProtectedRoute>
           </Route>
-          <Route path='/'>
+          <Route exact path='/'>
             <HomePage />
           </Route>
-            <ProfilePage />
         </Switch>
       )}
     </>
