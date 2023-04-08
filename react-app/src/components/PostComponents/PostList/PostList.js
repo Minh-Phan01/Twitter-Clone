@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getAllPosts} from "../../../store/posts"
 import PostCard from '../PostCard/PostCard'
 import { NavLink, useParams } from "react-router-dom";
+import CreatePostForm from '../CreatePostForm/CreatePostForm';
 
 import './PostList.css'
 
@@ -23,8 +24,12 @@ export const PostList = () => {
 
     return (
         <div className='post-component'>
+            <div className='post-list-create-container'>
+                 <CreatePostForm className='post-list-create-form'/>
+            </div>
             <h1 className='post-component-title'>---------------Nosy Nancy-----------------</h1>
             <div className='post-list'>
+               
                 {postsObj &&
                     sortedPosts.map(post => {
                         {
@@ -36,7 +41,6 @@ export const PostList = () => {
                         }
                     })}
             </div>
-
         </div>
         
     )

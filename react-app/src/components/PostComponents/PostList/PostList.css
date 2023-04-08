@@ -1,8 +1,7 @@
 .post-list{
-    overflow: auto;
+    overflow-y: auto;
     width: 800px;
-    height: 800px;
-    
+    flex: 1; 
 }
 
 .post-list::-webkit-scrollbar {
@@ -10,13 +9,23 @@
 }
 
 .post-component-title {
-    color: white
+    color: white;
 }
 
 .post-component {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    height: 100vh;
 }
 
+.post-list-create-form {
+    width: 100%;
+    display: inline-block;
+    border: 1px solid white;
+    padding-left: 10px;
+}
 
+.post-list-create-container {
+    width: 100%;
+}

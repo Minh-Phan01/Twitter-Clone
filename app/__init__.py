@@ -1,3 +1,6 @@
+from gevent import monkey
+
+monkey.patch_all()
 import os
 from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
@@ -13,9 +16,7 @@ from .api.images_routes import image_routes
 from .seeds import seed_commands
 from .socket import socketio
 from .config import Config
-from gevent import monkey
 
-monkey.patch_all()
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
 

@@ -1,3 +1,35 @@
 .create-post-name {
     color: white;
 }
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.create-post-text-area {
+    height: 100px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: grey;
+    color: white;
+    border: 1px solid white;
+}
+
+.create-post-text-area::placeholder {
+    color: white;
+  }
+
+  .create-post-component {
+     width: 100%;
+     
+  }
+
+  .create-post-area {
+    width: 100%;
+  }
+
+
+  

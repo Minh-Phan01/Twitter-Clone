@@ -1,5 +1,7 @@
 .user-profile-link {
     color: white;
+    text-decoration: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .user-card-pic {
@@ -8,6 +10,7 @@
     border-radius: 20%;
     margin-left: 5px;
     margin-right: 10px;
+    object-fit: cover;
 }
 
 .all-users-card {
