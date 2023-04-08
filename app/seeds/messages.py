@@ -3,7 +3,6 @@ from datetime import datetime
 
 def seed_messages():
     dwight_to_michael1 = Message(
-        id=1,
         sender_id=2,
         recipient_id=1,
         body='So I am the Assistant Regional Manager',
@@ -11,7 +10,6 @@ def seed_messages():
     )
 
     michael_to_dwight1 = Message(
-        id=2,
         sender_id=1,
         recipient_id=2,
         body='Assistant TO the Regional Manager...',
@@ -19,7 +17,6 @@ def seed_messages():
     )
 
     dwight_to_michael2 = Message(
-        id=3,
         sender_id=2,
         recipient_id=1,
         body='Assistant Regional Manager...',
@@ -27,7 +24,6 @@ def seed_messages():
     )
     
     michael_to_dwight2 = Message(
-        id=4,
         sender_id=1,
         recipient_id=2,
         body='ASSISTANT TO THE REGIONAL MANAGER!!',
@@ -36,7 +32,6 @@ def seed_messages():
 
 
     michael_to_kevin1 = Message(
-        id=5,
         sender_id=1,
         recipient_id=3,
         body='Kevin....cookie...',
@@ -44,7 +39,6 @@ def seed_messages():
     )
 
     kevin_to_michael1 = Message(
-        id=6,
         sender_id=3,
         recipient_id=1,
         body='Coming Michael!',
