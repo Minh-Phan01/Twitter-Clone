@@ -21,7 +21,7 @@ const DeleteMessageButton = ({message, socket, deleteThisMessage}) => {
     // })
 
     return (
-        <button onClick={deleteButton}>Delete Message!</button>
+        <button className='delete-messages-button' onClick={deleteButton}><i class="fa-sharp fa-solid fa-trash"></i></button>
     )
 }
 

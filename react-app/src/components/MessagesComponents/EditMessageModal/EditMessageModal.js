@@ -30,23 +30,25 @@ const EditMessageModal = ({ message, socket, editThisMessage }) => {
     }
 
     return (
-        <>
-        <div>Edit Message Here!</div>
-        {currentUser && <h2><img src={currentUser.profilePictureUrl}/> {currentUser.firstName} {currentUser.lastName}</h2>}
-        <section>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <textarea 
-                        type='text'
-                        placeholder='Edit Message'
-                        value={body}
-                        onChange={e => setBody(e.target.value)}
-                    />
-                </div>
-                <button type='submit'>Edit It!</button>
-            </form>
-        </section>
-        </>
+        
+        <div className='edit-message-modal-container'>
+            {currentUser && <h2 className='edit-message-header'><img className='profile-pic' src={currentUser.profilePictureUrl}/> {currentUser.firstName} {currentUser.lastName}</h2>}
+            <section>
+                <form onSubmit={handleSubmit}>
+                    <div className='edit-message-text-container'>
+                        <textarea 
+                            className='edit-message-text-area'
+                            type='text'
+                            placeholder='Edit Message'
+                            value={body}
+                            onChange={e => setBody(e.target.value)}
+                        />
+                    </div>
+                    <button className='edit-message-button' type='submit'>Edit It!</button>
+                </form>
+            </section>
+        </div>
+        
     )
 }
 

@@ -69,7 +69,6 @@ const SearchBar = () => {
                          ))}
                      </div>
                  </form>
-
             </div>
         </>
     )

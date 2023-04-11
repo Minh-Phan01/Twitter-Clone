@@ -1,0 +1,27 @@
+.edit-message-modal-container {
+    width: 500px;
+    
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.edit-message-text-area {
+    color: white;
+    background-color: grey;
+    border-radius: 5px;
+}
+
+.edit-message-text-container {
+    margin-left: 10px;
+}
+
+.edit-message-button {
+    margin-left: 10px;
+}
+
+.edit-message-header {
+   
+}

@@ -54,13 +54,14 @@ const CreateMessageForm = ({sendChat}) => {
 
     return (
         <>
-            <section>
+            <div className='create-message-container'>
                 <form onSubmit={handleSubmit}>
                     <ul>
-                         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                         {errors.map((error, idx) => <li className='errors' key={idx}>{error}</li>)}
                     </ul>
                     <div>
                         <textarea
+                            className='create-message-textarea'
                             type='text'
                             placeholder='Send a message'
                             value={body}
@@ -69,7 +70,7 @@ const CreateMessageForm = ({sendChat}) => {
                     </div>
                     <button type='submit'>Send It</button>
                 </form>  
-            </section>
+            </div>
         </>
     )
 }

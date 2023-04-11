@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 
 export const MessagesPage = () => {
     const { userId } = useParams();
+    const history = useHistory();
     const dispatch = useDispatch();
     const messagesObj = useSelector(state => state.messagesReducer);
     const messages = Object.values(messagesObj);
@@ -19,8 +20,11 @@ export const MessagesPage = () => {
     const sessionUser = useSelector(state => state.session.user);
     const [isLoaded, setisLoaded] = useState(false);
     const [socket, setSocket] = useState(null); 
-    console.log(socketMessages)
-    useEffect(() => {
+    
+   
+
+    useEffect(() => {  
+
       dispatch(getAllUsers())
         .then(() => dispatch(getAllMessages(userId, sessionUser.id)))
         .then((messages) => setSocketMessages(messages))
@@ -41,19 +45,19 @@ export const MessagesPage = () => {
     })
 
     socket.on("editMessage", (message) => {
-        console.log('Socket.on:', message);
+        
         setSocketMessages(prevState => {
             const messageIndex = prevState.findIndex(ele => ele.id === message.id)
-            console.log('MessageIndex:', messageIndex);
+           
             if (messageIndex !== -1) {
                 const newMessages = [...prevState]
-                console.log('newMessages:', newMessages)
                 newMessages[messageIndex] = message;
                 return newMessages;
             }
             return prevState;
         })
     })
+
 
 
       return () => {
@@ -65,6 +69,10 @@ export const MessagesPage = () => {
     const sendChat = (message) => {
       socket.emit("chat", message);
     }
+
+    if (parseInt(userId) === sessionUser.id) {
+        return <Redirect to='/' />
+    }; 
   
     if (isLoaded && !sessionUser) {
       return <Redirect to='/' />;
@@ -74,13 +82,20 @@ export const MessagesPage = () => {
 
     return (
       <>
-        <h1>Converse Here!</h1>
+      <div className='messages-name-container'>
+        <h1 className='messages-page-header'>Converse Here!</h1>
         {isLoaded &&
           <>
-            <MessageList socketMessages={socketMessages} socket={socket}/>
-            <CreateMessageForm sendChat={sendChat}/>
+          <div className='message-list-container'>
+            <MessageList className='messages-list' socketMessages={socketMessages} socket={socket}/>
+          </div>
+            <div className='create-message-container'>
+                <CreateMessageForm className='create-message-form' sendChat={sendChat}/>
+            </div>
           </>
         }
+
+      </div>
       </>
     );
   };

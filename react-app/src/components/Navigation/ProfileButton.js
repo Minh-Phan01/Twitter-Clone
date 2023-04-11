@@ -1,74 +1,72 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { logout } from "../../store/session";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from 'react-redux';
+import { NavLink, useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
-import OpenModalButton from "../OpenModalButton";
-import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
+import { useSelector } from "react-redux";
+import * as sessionActions from '../../store/session';
+import "./ProfileButton.css"
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user)
   const [showMenu, setShowMenu] = useState(false);
-  const ulRef = useRef();
+  const history = useHistory();
   
-
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
   };
-
+  
   useEffect(() => {
     if (!showMenu) return;
 
-    const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
-        setShowMenu(false);
-      }
+    const closeMenu = () => {
+      setShowMenu(false);
     };
 
-    document.addEventListener("click", closeMenu);
-
+    document.addEventListener('click', closeMenu);
+  
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
-  const handleLogout = (e) => {
+  const logout = (e) => {
     e.preventDefault();
-    dispatch(logout());
+    dispatch(sessionActions.logout());
+    history.push('/')
   };
-
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-  const closeMenu = () => setShowMenu(false);
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button className='profile-button' onClick={openMenu}>
+        <i class="fa-solid fa-user"></i>
       </button>
-      <ul className={ulClassName} ref={ulRef}>
-        {user ? (
-          <>
-            <Link to={`/users/${user.id}`}>{user.username}</Link>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
-          </>
-        ) : (
-          <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
+      {showMenu && (
+        <ul className="profile-dropdown">
+          <li>
+            {sessionUser && <Link to ={`/users/${user.id}`}>
+            <i class="fa-solid fa-id-card"></i>
+              My Posts
+            </Link>}
+          </li>
+          <li>
+            {sessionUser && <button className='log-out' onClick={logout}>
+            <i class="fa-solid fa-right-from-bracket"></i>
+              Log Out
+            </button>}
+          </li>
 
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-          </>
-        )}
-      </ul>
+          <li>
+            {!sessionUser && <button className="log-in-btn">
+            <NavLink to='/login'>Log In</NavLink>
+              </button>}
+          </li>
+          <li>
+            {!sessionUser && <button className="sign-up-btn">
+            <NavLink to='/signup'>Sign Up</NavLink>
+              </button>}
+          </li>
+        </ul>
+      )}
     </>
   );
 }

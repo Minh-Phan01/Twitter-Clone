@@ -5,3 +5,18 @@
 .hidden {
   display: none;
 }
+
+.home-logo {
+  width: 60px;
+}
+
+.navigation-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(37, 35, 35);
+}
+
+.home-logo-link {
+  padding: 10px 20px 10px 30px
+}

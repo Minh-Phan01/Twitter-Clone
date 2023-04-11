@@ -1,0 +1,46 @@
+.messages-body {
+    color: white;
+}
+
+.messages-card-container {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.messages-profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+
+.message-buttons-container {
+    margin-left: 100px; 
+}
+
+.message-container {
+    margin-bottom: 10px;
+}
+
+.message-list-container {
+    border: 2px solid white;
+    height: 700px;
+    overflow: auto;
+}
+
+.message-list-container::-webkit-scrollbar {
+    display: none;
+  }
+
+.messages-body {
+    background-color: rgb(65, 63, 63);
+    border: 2px solid white;
+    padding: 5px;
+    
+}

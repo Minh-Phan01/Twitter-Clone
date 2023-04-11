@@ -6,12 +6,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* border: 1px solid white; */
 }
 
-.search-bar-form {
-    /* border: 1px solid white; */
-}
 
 .search-bar{
     margin: 0;
@@ -47,7 +43,7 @@
 .search-list{
     position: absolute;
     background-color: white;
-    margin-left: 100px;
+    /* margin-left: 100px; */
     box-sizing: border-box;
     border: 1px solid black;
     border-radius: 5px;
