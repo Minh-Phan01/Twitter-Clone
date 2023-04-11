@@ -1,110 +1,170 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { NavLink, Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
-import UploadImage from "../UploadImage/UploadImage";
-import './SignupForm.css';
+import { useModal } from "../../context/Modal";
+import LoginFormModal from "../LoginFormModal";
+import "./SignupForm.css";
 
-function SignupFormPage() {
-  const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [first_name, setFirstName] = useState('');
-  const [last_name, setLastName] = useState('');
-  const [profile_picture_url, setImageUrl] = useState(null);
+const SignUpFormPage = () => {
+  const { setModalContent } = useModal();
+
+  const openLoginModal = () => {
+    setModalContent(<LoginFormModal />);
+  };
+
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+	firstName: "",
+	lastName: "",
+    image: null,
+  });
   const [errors, setErrors] = useState([]);
-
-  if (sessionUser) return <Redirect to="/" />;
+  const user = useSelector((state) => state.session.user);
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password === confirmPassword) {
-        const data = await dispatch(signUp(username, email, password, first_name, last_name, profile_picture_url));
-        if (data) {
-          setErrors([data])
-        }
-    } else {
-        setErrors(['Confirm Password field must be the same as the Password field']);
+
+    const userData = new FormData();
+    userData.append("username", formData.username);
+    userData.append("email", formData.email);
+    userData.append("password", formData.password);
+	userData.append("first_name", formData.firstName);
+	userData.append("last_name", formData.lastName);
+
+    if (formData.image) {
+      userData.append("profile_picture_url", formData.image);
+    }
+
+    if (formData.password === formData.confirmPassword && formData.password) {
+      const data = await dispatch(signUp(userData));
+	  if (data) {
+		setErrors(data)
+	  }
     }
   };
 
-  const updateImage = (e) => {
-		const file = e.target.files[0];
-		setImageUrl(file)
-	}
+  const updateFormData = (e) => {
+    const value = e.target.type === "file" ? e.target.files[0] : e.target.value;
+    setFormData({ ...formData, [e.target.name]: value });
+  };
+
+  if (user) {
+    return <Redirect to="/" />;
+  }
 
   return (
-    <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Username
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Confirm Password
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-					First Name
-					<input
-						type="text"
-						value={first_name}
-						onChange={(e) => setFirstName(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Last Name
-					<input
-						type="text"
-						value={last_name}
-						onChange={(e) => setLastName(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Profile Picture
-          <UploadImage setImageUrl={setImageUrl}/>
-				</label>
-        <button type="submit">Sign Up</button>
-      </form>
-    </>
-  );
-}
+    <div className="sign-up">
 
-export default SignupFormPage;
+    <div className="signup-form-container">
+      <form className="signup-form" onSubmit={handleSubmit}>
+        <header className="signup-form-header">Create an account</header>
+        <div className="signup-form-input-container">
+		<ul>
+          {errors.map((error, idx) => <li className='error-list'key={idx}>{error}</li>)}
+        </ul>
+          <label className="signup-form-input-label">Profile Picture</label>
+          <input
+            id="file"
+            type="file"
+            className="signup-form-photo-input"
+            onChange={updateFormData}
+            accept="image/*"
+            name="image"
+          />
+          {formData.image ? (
+            <img
+              className="signup-form-photo"
+              src={URL.createObjectURL(formData.image)}
+              alt="Profile Picture Preview"
+            />
+          ) : (
+            <label htmlFor="file" className="signup-form-input-label">
+              <i className="fa-solid fa-camera signup-camera"></i>
+            </label>
+          )}
+        </div>
+        <div className="signup-form-input-container">
+          <label className="signup-form-input-label">Email</label>
+          <input
+            className="signup-form-input"
+            type="text"
+            name="email"
+            onChange={updateFormData}
+            value={formData.email}
+          />
+        </div>
+        <div className="signup-form-input-container">
+          <label className="signup-form-input-label">Username</label>
+          <input
+            className="signup-form-input"
+            type="text"
+            name="username"
+            onChange={updateFormData}
+            value={formData.username}
+          />
+        </div>
+        <div className="signup-form-input-container">
+          <label className="signup-form-input-label">Password</label>
+          <input
+            className="signup-form-input"
+            type="password"
+            name="password"
+            onChange={updateFormData}
+            value={formData.password}
+          />
+        </div>
+        <div className="signup-form-input-container">
+          <label className="signup-form-input-label">Confirm Password</label>
+          <input
+            className="signup-form-input"
+            type="password"
+            name="confirmPassword"
+            onChange={updateFormData}
+            value={formData.confirmPassword}
+          />
+        </div>
+		<div className="signup-form-input-container">
+          <label className="signup-form-input-label">First Name</label>
+          <input
+            className="signup-form-input"
+            type="text"
+            name="firstName"
+            onChange={updateFormData}
+            value={formData.firstName}
+          />
+        </div>
+		<div className="signup-form-input-container">
+          <label className="signup-form-input-label">Last Name</label>
+          <input
+            className="signup-form-input"
+            type="text"
+            name="lastName"
+            onChange={updateFormData}
+            value={formData.lastName}
+          />
+        </div>
+        <button className="signup-form-submit" type="submit">
+          Sign Up
+        </button>
+        <div className="signup-text">
+			Already have an account?
+          <button
+            className="signup-form-login-link"
+            type="button"
+            onClick={openLoginModal}
+          >
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
+    </div>
+  );
+};
+
+export default SignUpFormPage;

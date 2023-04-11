@@ -19,12 +19,17 @@ export const ProfilePagePostList = () => {
         return new Date(p2.createdAt) - new Date(p1.createdAt)
     })
     // const userPosts = allPosts.filter(post => post.userId == userId)
-    
+    console.log(profileUser);
     useEffect(() => {
         dispatch(getAllPosts())
         dispatch(getAllUsers())
-        setisLoaded(true)
-    }, [dispatch])
+    }, [dispatch, getAllUsers])
+
+    useEffect(() => {
+        if (Object.keys(users).length > 0) {
+            setisLoaded(true);
+        }
+    }, [users])
 
     if (isLoaded && (!profileUser.length)) {
         return <Redirect to='/' />
@@ -32,16 +37,18 @@ export const ProfilePagePostList = () => {
 
     return (
         <>
-            {profileUser.length > 0 && <h1>{profileUser[0].firstName}'s Posts</h1>}
-            <div>
-                {sortedUserPosts &&
-                    sortedUserPosts.map(post => {
-                        {
-                            return <div>
-                                <PostCard post={post} />
-                            </div>
-                        }
-                    })}
+            <div className='profile-page-container'>
+                 {profileUser.length > 0 && <h1 className='profile-page-header'>{profileUser[0].firstName}'s Posts</h1>}
+                 <div className='profile-page-posts-container'>
+                     {sortedUserPosts &&
+                         sortedUserPosts.map(post => {
+                             {
+                                 return <div>
+                                     <PostCard post={post} className='profile-page-posts'/>
+                                 </div>
+                             }
+                         })}
+                 </div> 
             </div>
         </>
     )

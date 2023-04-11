@@ -26,22 +26,25 @@ export const MessageList = ({socketMessages, socket}) => {
 
     return (
         <>
-        <h1>Message List!</h1>
-        <div>
+        
+        <div className='message-list-container'>
             {socketMessages && socketMessages.map(message => {
                 {
-                    return <div>
-                            <div>
-                                <img src={message.senderInfo.profilePictureUrl} />
+                    return <div className='message-container'>
+                            <div className='messages-card-container'>
+                                <img className='messages-profile-pic'src={message.senderInfo.profilePictureUrl} />
+                                <div className='messages-body'>
                                  {message.body}
+                                    </div>
                             </div>
                         
-                        {isOwner.id === message.senderInfo.id && <div>
+                        {isOwner.id === message.senderInfo.id && <div className='message-buttons-container'>
                             <OpenModalButton 
-                                buttonText={"Edit Message"}
+                                className='edit-message-modal-button'
+                                buttonText={<i class="fa-sharp fa-solid fa-pen"></i>}
                                 modalComponent={<EditMessageModal message={message} socket={socket} editThisMessage={editThisMessage}/>}
                             />
-                            <DeleteMessageButton message={message} socket={socket} deleteThisMessage={deleteThisMessage}/>
+                            <DeleteMessageButton className='delete-message-button' message={message} socket={socket} deleteThisMessage={deleteThisMessage}/>
                             </div>}
                     </div>
                 }

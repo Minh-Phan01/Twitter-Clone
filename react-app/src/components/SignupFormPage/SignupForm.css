@@ -1,0 +1,116 @@
+.error-list {
+    color: red;
+}
+
+body {
+    background-color: rgb(37, 35, 35);;
+}
+
+.sign-up {
+    background-color: rgb(37, 35, 35);
+}
+ 
+
+.signup-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(37, 35, 35);
+  }
+  
+  .signup-form {
+    background-color: rgb(37, 35, 35);;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    padding: 20px;
+  }
+  
+  .signup-form-header {
+    font-size: 24px;
+    font-weight: bold;
+    color: #dcddde;
+    margin-bottom: 24px;
+  }
+  
+  .signup-form-input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .signup-form-input-label {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #dcddde;
+  }
+  
+  .signup-form-photo-input {
+    display: none;
+  }
+  
+  .signup-form-photo {
+    border-radius: 50%;
+    height: 80px;
+    margin-bottom: 20px;
+    object-fit: cover;
+    width: 80px;
+  }
+  
+  .signup-camera {
+    color: grey;
+    font-size: 36px;
+    margin: auto;
+    cursor: pointer;
+  }
+  
+  .signup-form-input {
+    background-color: #40444b;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  .signup-form-submit {
+    background-color: grey;
+    border: none;
+    border-radius: 5px;
+    color: #dcddde;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 24px;
+    padding: 12px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .signup-form-submit:hover {
+    background-color: rgb(40, 224, 190);
+  }
+  
+  .signup-form-login-link {
+    background-color: rgb(18, 134, 113);;
+    border: none;
+    border-radius: 3px;
+    color: #dcddde;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 8px;
+    padding: 8px 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .signup-form-login-link:hover {
+    background-color: #292b2f;
+  }
+  
+  .signup-text {
+    font-size: 14px;
+    color: #8e9297;
+    margin-top: 24px;
+  }

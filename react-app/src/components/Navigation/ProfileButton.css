@@ -1,0 +1,75 @@
+.profile-dropdown{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: absolute;
+    box-sizing: border-box;
+    border: 1px solid black;
+    padding: 20px;
+    background-color: white;
+    list-style-type: none;
+}
+
+.create-spot-button{
+    color:tomato;
+}
+
+.log-out{
+    background-color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    margin-left: 5px;
+}
+
+.log-out:hover{
+    cursor:pointer;
+}
+
+.login-button:hover{
+    cursor:pointer;
+}
+
+
+.signup-button:hover{
+    cursor:pointer;
+    color: black;
+    background-color: tomato;
+}
+
+.login-signup-container{
+    display: flex;
+    margin-right: 200px;
+    padding: 3px 3px 3px 10px;
+    color: black
+}
+
+.profile-button {
+    width: 50px;
+    height: 60px;
+}
+
+.log-in-btn{
+    cursor: pointer;
+    padding: 12px;
+    width: 150px;
+    background-color: white;
+    color: white;
+    border: 1px solid rgba(200, 200, 200, 1);
+    border-radius: 5px;
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+.sign-up-btn{
+    cursor: pointer;
+    padding: 12px;
+    width: 150px;
+    background-color: white;
+    color: white;
+    border: 1px solid rgba(200, 200, 200, 1);
+    border-radius: 5px;
+    margin-left: 10px;
+    font-size: 15px;
+}

@@ -31,5 +31,9 @@
     width: 100%;
   }
 
+  .error-handler {
+    color: red;
+  }
+
 
   

@@ -41,7 +41,7 @@ const CreatePostForm = () => {
         <section>
             <form onSubmit={handleSubmit}>
                 <ul>
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                {errors.map((error, idx) => <li key={idx} className='error-handler'>{error}</li>)}
                 </ul>
                 <div className='create-post-area'>
                     <textarea
