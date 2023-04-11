@@ -14,6 +14,11 @@ function Navigation({ isLoaded }){
 			<Link to='/' className='home-logo-link'>
 				<img src={TWITTEST} alt='Twittest Logo' className='home-logo' />
 			</Link>
+			<header className='home-footer'>
+				<p className='nav-footer-text'>Created by Minh Phan</p>
+				<a href='https://github.com/Minh-Phan01/Twittest' className='nav-footer-icon-link'> <i className="fab fa-github home-footer-icon"></i></a>
+				<a href='https://www.linkedin.com/in/minhphan1/' className='nav-footer-icon-link'> <i className="fab fa-linkedin home-footer-icon"></i></a>
+			</header>
 		
 		{isLoaded && (
 			<div>
