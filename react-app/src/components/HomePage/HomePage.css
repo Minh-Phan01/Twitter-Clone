@@ -35,13 +35,12 @@
   .users-container {
     flex: 1; /* Make all three components take up equal amount of space */
     height: 100%; /* Make sure each component takes up the full height of the container */
-    padding: 10px;
+    padding: 40px;
   }
   
   .home-page-container-2 {
     overflow-y: scroll;
     overflow: hidden; /* Allow only the post list to scroll vertically */
-    
 }
 
   .home-page-container-1 {

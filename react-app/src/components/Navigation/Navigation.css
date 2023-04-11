@@ -42,8 +42,13 @@
   color: #999;
 }
 
+.profile-button-container {
+  margin-right: 80px;
+}
+
 .nav-footer-icon-link {
   width: 20px;
   font-size: 24px;
   margin: 5px;
 }
+
