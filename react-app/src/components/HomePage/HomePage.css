@@ -30,7 +30,7 @@
     height: 100vh; /* Make sure the container fills the entire viewport height */
   }
   
-  .home-page-container-1,
+  /* .home-page-container-1, */
   .home-page-container-2,
   .users-container {
     flex: 1; /* Make all three components take up equal amount of space */
