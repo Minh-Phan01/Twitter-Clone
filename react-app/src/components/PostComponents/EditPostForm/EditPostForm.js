@@ -37,23 +37,27 @@ const EditPostForm = () => {
 
     return (
         <>
-         <div>
-            <h1>Since you're insecure...Here you go</h1>
-            {currentUser && <h2><img src={currentUser.profilePictureUrl}/> {currentUser.firstName} {currentUser.lastName}</h2>}
+        <div className='edit-post-container'>
+         <div >
+            <h1 className='edit-post-header'>Edit Your Post!</h1>
+            {currentUser && <h2 className='edit-post-username'><img className='profile-pic' src={currentUser.profilePictureUrl}/> {currentUser.firstName} {currentUser.lastName}</h2>}
          </div>
          <section>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className='edit-post-text-area-container'>
                     <textarea
+                        className='edit-post-text-area'
                         type='text'
                         placeholder='Post A Message'
                         value={body}
                         onChange={e => setBody(e.target.value)}
                     />
                 </div>
-                <button type='submit'>Edit It!</button>
+                <button className='edit-post-button' type='submit'><i class="fa-solid fa-pen-to-square"></i></button>
             </form>
         </section>
+
+        </div>
         </>
     )
 }

@@ -15,6 +15,8 @@ export const MessagesPage = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const messagesObj = useSelector(state => state.messagesReducer);
+    const users = useSelector(state => state.usersReducer)
+    const profileUser = Object.values(users).filter(user => user.id == userId)
     const messages = Object.values(messagesObj);
     const [socketMessages, setSocketMessages] = useState(messages);
     const sessionUser = useSelector(state => state.session.user);
@@ -68,6 +70,10 @@ export const MessagesPage = () => {
     
     const sendChat = (message) => {
       socket.emit("chat", message);
+    }
+
+    if (isLoaded && (!profileUser.length)) {
+        return <Redirect to='/' />
     }
 
     if (parseInt(userId) === sessionUser.id) {
