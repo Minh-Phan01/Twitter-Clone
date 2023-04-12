@@ -24,7 +24,7 @@ export const AllUsers = () => {
                 {allUsers && allUsers.map(user => {
                     {
                         return <div>
-                            <AllUsersCard user={user}/>
+                            <AllUsersCard key={user.id} user={user}/>
                         </div>
                     }
                 })}

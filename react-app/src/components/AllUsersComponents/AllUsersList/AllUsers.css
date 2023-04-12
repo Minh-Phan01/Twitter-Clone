@@ -4,8 +4,8 @@
 
 .all-users-list {
     overflow: auto;
-    height: 800px;
-    width: 500px;
+    height: 740px;
+    width: 400px;
     border: 2px solid white;
     border-radius: 10px;
     background-color: grey;

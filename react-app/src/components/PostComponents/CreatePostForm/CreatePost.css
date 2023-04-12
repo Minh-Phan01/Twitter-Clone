@@ -16,6 +16,7 @@
     background-color: grey;
     color: white;
     border: 1px solid white;
+    z-index: 1;
 }
 
 .create-post-text-area::placeholder {

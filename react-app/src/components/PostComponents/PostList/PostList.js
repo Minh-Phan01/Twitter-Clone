@@ -27,15 +27,15 @@ export const PostList = () => {
             <div className='post-list-create-container'>
                 { sessionUser && <CreatePostForm className='post-list-create-form'/> }
             </div>
-            <h1 className='post-component-title'>---------------Nosy Nancy-----------------</h1>
+            <h1 className='post-component-title'>Nosy Nancy</h1>
             <div className='post-list'>
                
                 {postsObj &&
-                    sortedPosts.map(post => {
+                    sortedPosts.map((post) => {
                         {
                             return <div>
                                 <div>
-                                    <PostCard post={post}/>
+                                    <PostCard key={post.id} post={post}/>
                                 </div>
                             </div>
                         }

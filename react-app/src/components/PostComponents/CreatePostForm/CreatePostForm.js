@@ -31,6 +31,10 @@ const CreatePostForm = () => {
         })
     }
 
+    const handleBodyChange = (e) => {
+        setBody(e.target.value)
+    }
+
     
 
     return (
@@ -45,11 +49,12 @@ const CreatePostForm = () => {
                 </ul>
                 <div className='create-post-area'>
                     <textarea
+                        key='create-post'
                         className='create-post-text-area'
                         type='text'
                         placeholder='What is on your mind?'
                         value={body}
-                        onChange={e => setBody(e.target.value)}
+                        onChange={handleBodyChange}
                     />
                 </div>
                 <button type='submit'> <i className="fas fa-paper-plane"></i></button>
