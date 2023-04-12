@@ -5,7 +5,7 @@
     position: absolute;
     box-sizing: border-box;
     padding: 20px;
-    background-color: rgb(37, 35, 35);
+    background-color: rgb(46, 44, 44);
     list-style-type: none;
 }
 
@@ -74,4 +74,11 @@
     margin-left: 10px;
     font-size: 15px;
     font-weight: bold;
+}
+
+.profiile-pic {
+    object-fit: cover;
+    width: 800px;
+    height: 800px;
+    margin: 2px;
 }

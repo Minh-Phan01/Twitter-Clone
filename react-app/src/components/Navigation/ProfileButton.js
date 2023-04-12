@@ -43,10 +43,9 @@ function ProfileButton({ user }) {
       {showMenu && (
         <ul className="profile-dropdown">
           <li>
-            {sessionUser && <Link to ={`/users/${user.id}`}>
-            <i class="fa-solid fa-id-card"></i>
-              My Posts
-            </Link>}
+            {sessionUser && <a href={`/users/${user.id}`} >
+            <img src={sessionUser.profilePictureUrl} className='profile-pic'/>
+            </a>}
           </li>
           <li>
             {sessionUser && <button className='log-out' onClick={logout}>
