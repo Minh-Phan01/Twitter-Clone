@@ -4,9 +4,8 @@
     align-items: stretch;
     position: absolute;
     box-sizing: border-box;
-    border: 1px solid black;
     padding: 20px;
-    background-color: white;
+    background-color: rgb(37, 35, 35);
     list-style-type: none;
 }
 
@@ -42,7 +41,7 @@
     display: flex;
     margin-right: 200px;
     padding: 3px 3px 3px 10px;
-    color: black
+    color: white;
 }
 
 .profile-button {
@@ -54,22 +53,25 @@
     cursor: pointer;
     padding: 12px;
     width: 150px;
-    background-color: white;
+    background-color: rgb(18, 134, 113);
     color: white;
     border: 1px solid rgba(200, 200, 200, 1);
     border-radius: 5px;
     margin-left: 10px;
     font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .sign-up-btn{
     cursor: pointer;
     padding: 12px;
     width: 150px;
-    background-color: white;
+    background-color: rgb(18, 134, 113);
     color: white;
     border: 1px solid rgba(200, 200, 200, 1);
     border-radius: 5px;
     margin-left: 10px;
     font-size: 15px;
+    font-weight: bold;
 }
