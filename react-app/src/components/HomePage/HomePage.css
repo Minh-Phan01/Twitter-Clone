@@ -31,12 +31,12 @@
   }
 
   .home-page-container-1 {
-    flex: 0.7
+    flex: 1
   }
   
   /* .home-page-container-1, */
   .home-page-container-2 {
-    flex: 1.7; /* Make all three components take up equal amount of space */
+    flex: 1.4; /* Make all three components take up equal amount of space */
     height: 100%; /* Make sure each component takes up the full height of the container */
     padding: 40px;
   }
@@ -48,6 +48,10 @@
 
   .home-page-container-1 {
     padding-left: 5px;
+  }
+
+  .users-container {
+    flex: 0.8
   }
 
   
