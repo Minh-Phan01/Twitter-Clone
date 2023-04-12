@@ -55,9 +55,10 @@
     width: 150px;
     background-color: rgb(18, 134, 113);
     color: white;
-    border: 1px solid rgba(200, 200, 200, 1);
+    /* border: 1px solid rgba(200, 200, 200, 1); */
     border-radius: 5px;
     margin-left: 10px;
+    margin-bottom: 5px;
     font-size: 15px;
     font-weight: bold;
     text-decoration: none;
@@ -69,7 +70,7 @@
     width: 150px;
     background-color: rgb(18, 134, 113);
     color: white;
-    border: 1px solid rgba(200, 200, 200, 1);
+    /* border: 1px solid rgba(200, 200, 200, 1); */
     border-radius: 5px;
     margin-left: 10px;
     font-size: 15px;
