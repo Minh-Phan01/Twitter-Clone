@@ -56,6 +56,8 @@ const SearchBar = () => {
         setSearchTerm(recommendation)
     }
 
+    
+
     return (
         <>
             <div className='search-bar-container'>
