@@ -14,7 +14,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: rgb(37, 35, 35);
+  /* background-color: rgb(37, 35, 35); */
 }
 
 .home-logo-link {
