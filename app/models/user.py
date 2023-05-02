@@ -30,6 +30,7 @@ class User(db.Model, UserMixin):
     posts = db.relationship('Post', back_populates='user')
     shares = db.relationship('Share', back_populates='user')
     likes = db.relationship('Like', back_populates='user')
+    comments = db.relationship('Comment', back_populates='user')
     # followed = db.relationship('User', primaryjoin=(followers.c.user_id == id), secondaryjoin=(followers.c.follower_id == id), db.backref('followers', lazy='dynamic'), lazy='dynamic')
     sent_messages = db.relationship('Message', back_populates='sender', foreign_keys='Message.sender_id')
     received_messages = db.relationship('Message', back_populates='recipient', foreign_keys='Message.recipient_id')
