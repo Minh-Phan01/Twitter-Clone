@@ -14,7 +14,6 @@ const SearchBar = () => {
     const sessionUser = useSelector(state => state.session.user);
     
 
-    
     useEffect(() => {
         dispatch(getAllUsers())
     }, [dispatch]);
