@@ -28,7 +28,7 @@ def comments():
 
 @comment_routes.route('/users/<int:userId>/<int:postId>', methods=['POST'])
 @login_required
-def comment_create():
+def comment_create(userId, postId):
     """
     Create a comment for a user
     """
