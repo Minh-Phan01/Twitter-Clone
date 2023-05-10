@@ -75,7 +75,6 @@ def delete_post(postId):
     """
     Delete a post by postId
     """
-
     post = Post.query.filter(Post.id == postId).first()
     if (post.user_id == int(current_user.get_id())):
         db.session.delete(post)

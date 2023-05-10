@@ -92,6 +92,7 @@ export const editPostThunk = (postEdit) => async (dispatch) => {
 
 
 export const deletedPost = (postId) => async (dispatch) => {
+    console.log('Logging from thunk:', typeof postId)
     const response = await fetch(`/api/posts/${postId}/delete`, {
         method: 'DELETE'
     });

@@ -11,6 +11,8 @@ export const PostCard = ({post}) => {
     }
 
     const deleteButton = (e) => {
+        console.log(post.id)
+        console.log('Logging from delete button:', typeof post.id)
         const accept = window.confirm('Deleting Post');
         if (accept) {
             dispatch(deletedPost(post.id))
