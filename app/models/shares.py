@@ -13,7 +13,7 @@ class Share(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
 
     user = db.relationship('User', back_populates='shares')
-    post = db.relationship('Post', back_populates='shares')
+    # post = db.relationship('Post', back_populates='shares')
 
     def to_dict(self):
         return {

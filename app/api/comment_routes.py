@@ -50,31 +50,31 @@ def comment_create(userId, postId):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-    @comment_routes.route('/edit/<int:commentId>', methods=['PUT'])
-    @login_required
-    def edit_comment(commentId):
-        """
-        Edit a comment by commentId
-        """
-        form = CommentForm()
-        data = form.data
-        comment = Comment.query.filter(Comment.id == commentId).first()
-        if (comment.user_id == int(current_user.get_id())):
-            for key, value in data.items():
-                if hasattr(comment, key) and value is not None:
-                    setattr(comment, key, value)
-        db.session.commit()
-        return comment.to_dict()
+@comment_routes.route('/edit/<int:commentId>', methods=['PUT'])
+@login_required
+def edit_comment(commentId):
+    """
+    Edit a comment by commentId
+    """
+    form = CommentForm()
+    data = form.data
+    comment = Comment.query.filter(Comment.id == commentId).first()
+    if (comment.user_id == int(current_user.get_id())):
+        for key, value in data.items():
+            if hasattr(comment, key) and value is not None:
+                setattr(comment, key, value)
+    db.session.commit()
+    return comment.to_dict()
 
     
-    @comment_routes.route('/<int:commentId>/delete', methods=['DELETE'])
-    @login_required
-    def delete_comment(commentId):
-        """
-        Delete a comment by commentId
-        """
-        comment = Comment.query.filter(Comment.id == commentId).first()
-        if (comment.user_id == int(current_user.get_id())):
-            db.session.delete(comment)
-            db.session.commit()
-            return 'Successfully deleted comment!'
+@comment_routes.route('/<int:commentId>/delete', methods=['DELETE'])
+@login_required
+def delete_comment(commentId):
+    """
+    Delete a comment by commentId
+    """
+    comment = Comment.query.filter(Comment.id == commentId).first()
+    if (comment.user_id == int(current_user.get_id())):
+        db.session.delete(comment)
+        db.session.commit()
+    return 'Successfully deleted comment!'

@@ -1,18 +1,20 @@
 import { deletedComment } from '../../../store/comments'
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { useModal } from '../../../context/Modal';
 import './CommentsCard.css'
 
 const CommentsCard = ({comment}) => {
     const dispatch = useDispatch();
+    const { closeModal } = useModal()
     const sessionUser = useSelector(state => state.session.user);
-    console.log(Number.isInteger(comment.id))
+    
     const deleteButton = (e) => {
-        
         const accept = window.confirm('Deleting Comment');
         if (accept) {
             dispatch(deletedComment(comment.id))
         }
+        closeModal()
     }
 
     return (
