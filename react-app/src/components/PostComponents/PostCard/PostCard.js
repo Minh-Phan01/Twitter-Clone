@@ -54,11 +54,11 @@ export const PostCard = ({post}) => {
                     buttonText={`View ${postComments.length} Comments`}
                     modalComponent={<CommentsList postComments={postComments}/>}
                 />}
-                <OpenModalButton
+                {sessionUser && <OpenModalButton
                     className='create-comments-modal-button'
                     buttonText={'Add Comment'}
                     modalComponent={<CreateCommentModal post={post}/>}
-                />
+                />}
                 </div>
             </div>
         </div>

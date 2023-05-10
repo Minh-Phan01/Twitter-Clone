@@ -1,5 +1,6 @@
 const GET_COMMENTS = 'comments/getComments';
 const CREATE_COMMENT = 'comments/createComment';
+const DELETE_COMMENT = 'comments/deleteComment';
 
 
 //GET COMMENTS ACTION
@@ -16,6 +17,15 @@ const addComment = (payload) => {
     return {
         type: CREATE_COMMENT,
         payload
+    }
+}
+
+
+//DELETE COMMENT ACTION
+const deleteComment = (commentId) => {
+    return {
+        type: DELETE_COMMENT,
+        commentId
     }
 }
 
@@ -50,6 +60,18 @@ export const createComment = (newComment) => async (dispatch) => {
     return response;
 }
 
+
+//DELETE COMMENT THUNK
+export const deletedComment = (commentId) => async (dispatch) => {
+    const response = await fetch(`/api/comments/${commentId}/delete`, {
+        method: 'DELETE'
+    });
+
+    if (response.ok) {
+        dispatch(deleteComment(commentId))
+    }
+}
+
 const initialState = {}
 
 export const commentsReducer = (state = initialState, action) => {
@@ -63,6 +85,9 @@ export const commentsReducer = (state = initialState, action) => {
             return newState;
         case CREATE_COMMENT: 
             newState[action.payload.id] = action.payload;
+            return newState;
+        case DELETE_COMMENT:
+            delete newState[action.commentId];
             return newState;
         default:
             return state;
