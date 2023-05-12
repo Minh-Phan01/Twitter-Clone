@@ -19,12 +19,15 @@ const CommentsCard = ({comment}) => {
 
     return (
         <>
-        <div>
-              <img className='profile-pic' src={comment.userInfo.profilePictureUrl}/>
-              <div>{comment.userInfo.firstName} {comment.userInfo.lastName}: {comment.body}</div>
-        </div>
-        <div>
-            {(sessionUser && comment.userId === sessionUser.id) && <button onClick={deleteButton}><i class="fa-solid fa-trash"></i></button>}
+        <div className='comment-card'>
+             <div className='comment-container'>
+                   <img className='profile-pic' src={comment.userInfo.profilePictureUrl}/>
+                   <div className='comment-info'>{comment.userInfo.firstName} {comment.userInfo.lastName}: {comment.body}</div>
+             </div>
+             <div className='button-container'>
+                 {(sessionUser && comment.userId === sessionUser.id) && <button onClick={deleteButton}><i class="fa-solid fa-trash"></i></button>}
+             </div>
+
         </div>
         </>
     )
