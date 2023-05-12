@@ -5,3 +5,4 @@ from .likes import Like
 from .messages import Message
 from .posts import Post
 from .shares import Share
+from .comments import Comment

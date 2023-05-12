@@ -1,0 +1,23 @@
+.comment-container {
+    display: flex;
+    margin: 10px;
+}
+
+.button-container {
+    margin-left: 10px;
+    align-self: flex-end;
+    margin-bottom: 18px;
+    margin-right: 10px;
+}
+
+.comment-card {
+    display: flex;
+    background-color: rgb(37, 35, 35);
+    border: solid 2px white;
+}
+
+.comment-info {
+    align-self: flex-end;
+    margin-bottom: 10px;
+    color: white;
+}

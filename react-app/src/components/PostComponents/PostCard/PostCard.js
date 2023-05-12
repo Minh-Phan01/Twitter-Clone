@@ -1,11 +1,20 @@
 import { NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deletedPost } from "../../../store/posts";
+import { getAllComments } from "../../../store/comments";
+import { useEffect, useState } from "react";
+import OpenModalButton from "../../OpenModalButton";
+import CommentsList from "../../CommentsComponents/CommentsList/CommentsList";
+import CreateCommentModal from "../../CommentsComponents/CreateCommentModal/CreateCommentModal";
 import './PostCard.css'
 
 export const PostCard = ({post}) => {
     const history = useHistory();
     const dispatch = useDispatch();
+    const [isLoaded, setIsLoaded] = useState(false)
+    const commentsObj = useSelector(state => state.commentsReducer)
+    const postComments = Object.values(commentsObj).filter(comment => comment.postId === post.id);
+
     const editedPostInfo = () => {
         history.push(`/posts/${post.id}/edit`)
     }
@@ -19,6 +28,11 @@ export const PostCard = ({post}) => {
 
     const sessionUser = useSelector(state => state.session.user);
 
+    useEffect(() => {
+        dispatch(getAllComments()).then(() => setIsLoaded(true))
+    }, [dispatch])
+
+
 
     //if user is not logged in, it breaks the code ----> profilePictureUrl --> look at EditPostForm & CreatePostForm (Home Page)
     return (
@@ -30,9 +44,22 @@ export const PostCard = ({post}) => {
             </div>
             <h4 className="post-body">{post.body}</h4>
             <div>
+                <div>
                 {(sessionUser && post.userId === sessionUser.id) && <button onClick={editedPostInfo}><i class="fa-solid fa-pen"></i></button>}
                 {(sessionUser && post.userId === sessionUser.id) && <button onClick={deleteButton}><i class="fa-solid fa-trash"></i></button>}
-                
+                </div>
+                <div>
+                { postComments.length > 0 && <OpenModalButton
+                    className='post-comments-modal-button'
+                    buttonText={`View ${postComments.length} Comments`}
+                    modalComponent={<CommentsList postComments={postComments}/>}
+                />}
+                {sessionUser && <OpenModalButton
+                    className='create-comments-modal-button'
+                    buttonText={'Add Comment'}
+                    modalComponent={<CreateCommentModal post={post}/>}
+                />}
+                </div>
             </div>
         </div>
         </>

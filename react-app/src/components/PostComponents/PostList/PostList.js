@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from "react";
 import { getAllPosts} from "../../../store/posts"
+import { getAllComments } from '../../../store/comments';
 import PostCard from '../PostCard/PostCard'
 import { NavLink, useParams } from "react-router-dom";
 import CreatePostForm from '../CreatePostForm/CreatePostForm';
@@ -17,8 +18,13 @@ export const PostList = () => {
         return new Date(p2.createdAt) - new Date(p1.createdAt)
     })
 
+    // const commentsObj = useSelector(state => state.commentsReducer);
+    // const allComments = Object.values(commentsObj);
+    
+
     useEffect(() => {
         dispatch(getAllPosts()).then(() => setisLoaded(true))
+        // dispatch(getAllComments())
     }, [dispatch])
 
 

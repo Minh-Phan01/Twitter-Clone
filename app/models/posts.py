@@ -14,8 +14,9 @@ class Post(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True), onupdate=func.now())
 
     user = db.relationship('User', back_populates='posts')
-    shares = db.relationship('Share', back_populates='post')
-    likes = db.relationship('Like', back_populates='post')
+    # shares = db.relationship('Share', back_populates='post')
+    # likes = db.relationship('Like', back_populates='post')
+    comments = db.relationship('Comment', back_populates='post')
 
     def to_dict(self):
         return {
