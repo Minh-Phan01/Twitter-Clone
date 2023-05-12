@@ -1,0 +1,16 @@
+.create-comment-component {
+    margin-left: 10px;
+    background-color: rgb(37, 35, 35);
+    width: 800px;
+    height: 300px;
+}
+
+.create-comment-header {
+    color: white;
+    margin-left: 10px;
+}
+
+.create-comment {
+    background-color: rgb(37, 35, 35);
+}
+

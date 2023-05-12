@@ -32,27 +32,33 @@ export const CreateCommentModal = ({post}) => {
 
     return (
         <>
-         <div className='create-comment-component'>
-          { currentUser && <h2 className='create-comment-name'><img src={currentUser.profilePictureUrl} className='profile-pic'/> {currentUser.firstName} {currentUser.lastName}</h2> }
-        </div>
-        <section>
-            <form onSubmit={handleSubmit}>
-                <ul>
-                {errors.map((error, idx) => <li key={idx} className='error-handler'>{error}</li>)}
-                </ul>
-                <div className='create-comment-area'>
-                    <textarea
-                        key='create-comment'
-                        className='create-comment-text-area'
-                        type='text'
-                        placeholder='What is on your mind?'
-                        value={body}
-                        onChange={handleBodyChange}
-                    />
-                </div>
-                <button type='submit'> <i className="fas fa-paper-plane"></i></button>
-            </form>
-        </section>
+        <div className='create-comment'>
+             <div className='create-comment-component'>
+                  <div className='create-comment-header'>
+                   { currentUser && <h2 className='create-comment-name'><img src={currentUser.profilePictureUrl} className='profile-pic'/> {currentUser.firstName} {currentUser.lastName}</h2> }
+                 </div>
+                 <section>
+                     <form onSubmit={handleSubmit}>
+                         <ul>
+                         {errors.map((error, idx) => <li key={idx} className='error-handler'>{error}</li>)}
+                         </ul>
+                         <div className='create-comment-area'>
+                             <textarea
+                                 key='create-comment'
+                                 className='create-comment-text-area'
+                                 type='text'
+                                 placeholder='Comment...'
+                                 value={body}
+                                 onChange={handleBodyChange}
+                             />
+                         </div>
+                         <button type='submit'> <i className="fas fa-paper-plane"></i></button>
+                     </form>
+                 </section>
+
+             </div>
+
+             </div>
         </>
     )
 }
