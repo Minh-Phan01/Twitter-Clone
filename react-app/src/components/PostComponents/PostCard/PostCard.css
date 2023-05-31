@@ -38,3 +38,8 @@
     color: white;
     float: right;
 }
+
+.post-comments-modal-button {
+    background-color: rgb(18, 134, 113);
+    color: white;
+}

@@ -14,3 +14,15 @@
     background-color: rgb(37, 35, 35);
 }
 
+.create-comment-text-area {
+    height: 100px;
+    width: 50%;
+    border-radius: 10px;
+    background-color: grey;
+    color: white;
+    border: 1px solid white;
+}
+
+.create-comment-text-area::placeholder {
+    color: white;
+  }
